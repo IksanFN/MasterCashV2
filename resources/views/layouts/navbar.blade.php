@@ -49,7 +49,7 @@
               Pengaturan
             </a>
             <ul class="dropdown-menu border-0 shadow-smooth p-3">
-              <li><a class="dropdown-item" href="">Pelajar</a></li>
+              <li><a class="dropdown-item" href="{{ route('classrooms.index') }}">Classrooms</a></li>
               <li><a class="dropdown-item" href="">Tagihan</a></li>
               <li><a class="dropdown-item" href="">Jurusan</a></li>
             </ul>
