@@ -14,7 +14,7 @@
                             <input type="text" wire:model.live.debounce.500ms='query' placeholder="Search" class="form-control">
                         </div>
                         <div class="col-md-2 ms-auto text-end">
-                            <a href="{{ route('classrooms.create') }}" class="btn btn-dark shadow-sm" ><i class="bi bi-person-plus-fill"></i></a>
+                            <a href="{{ route('classrooms.create') }}" class="btn btn-indigo shadow-sm" ><i class="bi bi-person-plus-fill"></i></a>
                         </div>
                         <div class="col-md-2">
                             <select wire:model.live='limit' class="form-select">
