@@ -11,12 +11,12 @@
               Dashboard
             </x-navbar-link>
           </li>
-          {{-- <li class="nav-item">
-            <x-navbar-link :href="route('students.index')" :active="request()->routeIs('students.*')">
+          <li class="nav-item">
+            <x-navbar-link :href="route('users.index')" :active="request()->routeIs('users.*')">
               Students
             </x-navbar-link>
           </li>
-          <li class="nav-item">
+          {{-- <li class="nav-item">
             <x-navbar-link :href="route('bills.index')" :active="request()->routeIs('bills.*')">
             Bills
             </x-navbar-link>
