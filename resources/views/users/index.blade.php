@@ -58,8 +58,32 @@
                                         <td>{{$user->name}}</td>
                                         <td>{{$user->email}}</td>
                                         <td class="text-center">
-                                            <a href="{{ route('users.edit', $user->uuid) }}" class="btn btn-dark">Edit</a>
-                                            <a href="" class="btn btn-dark">Delete</a>
+                                            <a href="{{ route('users.edit', $user->uuid) }}" class="btn btn-dark"><i class="bi bi-pencil-square"></i></a>
+                                            <button type="button" class="btn btn-dark shadow-sm" data-bs-toggle="modal" data-bs-target="#hapusUser">
+                                                <i class="bi bi-trash3-fill"></i>
+                                            </button>
+                                            <!-- Modal -->
+                                            <div class="modal fade" id="hapusUser" tabindex="-1" aria-labelledby="hapusUserLabel" aria-hidden="true">
+                                                <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                    <h1 class="modal-title fs-5" id="hapusUserLabel">Hapus User</h1>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <p>Apakah anda yakin akan menghapus nya?</p>
+                                                        <form action="{{ route('users.destroy', $user->uuid) }}" method="post">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                                                        <button type="submit" class="btn btn-primary">Hapus</button>
+                                                    </form>
+                                                    </div>
+                                                </div>
+                                                </div>
+                                            </div>
                                         </td>
                                     </tr>
                                 @empty

@@ -2,8 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Users\UserStore;
+use App\Models\Classroom;
+use App\Models\Major;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class UserController extends Controller
@@ -22,22 +27,50 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('users.create');
+        $classrooms = Classroom::all();
+        $majors = Major::all();
+        return view('users.create', compact('classrooms', 'majors'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(UserStore $request)
     {
-        $this->validate($request, [
-            'name' => 'string',
-            'email' => 'email', 'unique:users',
-            'password' => bcrypt($request->password),
-        ]);
+        // return $request->all();
+        if ($request->hasFile('avatar')) {
 
-        User::create($request->all());
+            // Get Name File and Move Image
+            $avatar = $request->file('avatar');
+            $avatar->storeAs('public/avatar', $avatar->hashName());
 
+            // Create
+            $user = User::create([
+                'avatar' => $avatar->hashName(),
+                'classroom_id' => $request->classroom,
+                'major_id' => $request->major,
+                'nisn' => $request->nisn,
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
+                'phone' => $request->phone,
+                'gender' => $request->gender,
+                'address' => $request->address,
+            ]);
+        } else {
+            $user = User::create([
+                'classroom_id' => $request->classroom,
+                'major_id' => $request->major,
+                'nisn' => $request->nisn,
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
+                'phone' => $request->phone,
+                'gender' => $request->gender,
+                'address' => $request->address,
+            ]);
+        }
+    
         Alert::success('Success', 'User Created Successfully');
         return to_route('users.index');
     }
@@ -55,7 +88,9 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        return view('users.edit', compact('user'));
+        $classrooms = Classroom::all();
+        $majors = Major::all();
+        return view('users.edit', compact('user', 'classrooms', 'majors'));
     }
 
     /**
@@ -63,16 +98,41 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        $this->validate($request, [
-            'name' => 'string',
-            'email' => 'email|unique:users,email,'.$user->id.',id',
-        ]);
+        if ($request->hasFile('avatar')) {
 
-        $user->update([
-            'name' => $request->name,
-            'emial' => $request->email,
-            'password' => bcrypt($request->password),
-        ]);
+            // Get name file
+            $avatar = $request->file('avatar');
+            $avatar->storeAs('public/avatar', $avatar->hashName());
+
+            // Delete old avatar
+            Storage::delete('storage/avatar/'.$user->avatar);
+            
+            $user->update([
+                'avatar' => $avatar->hashName(),
+                'classroom_id' => $request->classroom,
+                'major_id' => $request->major,
+                'nisn' => $request->nisn,
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
+                'phone' => $request->phone,
+                'gender' => $request->gender,
+                'address' => $request->address,
+            ]);
+
+        } else {
+            $user->update([
+                'classroom_id' => $request->classroom,
+                'major_id' => $request->major,
+                'nisn' => $request->nisn,
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
+                'phone' => $request->phone,
+                'gender' => $request->gender,
+                'address' => $request->address,
+            ]);
+        }
         Alert::success('Success', 'Updated Successfully');
         return to_route('users.index');
     }
