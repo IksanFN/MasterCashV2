@@ -34,6 +34,7 @@ class UserUpdate extends FormRequest
             'phone' => ['nullable', 'min:8'],
             'gender' => ['required', 'in:Male,Female'],
             'address' => ['nullable', 'string'],
+            'roles' => ['required'],
         ];
     }
 }

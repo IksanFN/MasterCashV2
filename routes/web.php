@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\ClassroomController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -33,6 +35,39 @@ Route::middleware('auth')->group(function () {
             Route::get('/edit/{user:uuid}', 'edit')->name('edit');
             Route::put('/edit/{user:uuid}', 'update')->name('update');
             Route::delete('/delete/{user:uuid}', 'destroy')->name('destroy');
+        });
+    });
+
+    Route::prefix('roles')->name('roles.')->group(function() {
+        Route::controller(RoleController::class)->group(function() {
+            Route::get('/', 'index')->name('index');
+            Route::get('/create', 'create')->name('create');
+            Route::post('/create', 'store')->name('store');
+            Route::get('/edit/{role:uuid}', 'edit')->name('edit');
+            Route::put('/edit/{role:uuid}', 'update')->name('update');
+            Route::delete('/delete/{role:uuid}', 'destroy')->name('destroy');
+        });
+    });
+
+    Route::prefix('classrooms')->name('classrooms.')->group(function() {
+        Route::controller(ClassroomController::class)->group(function() {
+            Route::get('/', 'index')->name('index');
+            Route::get('/create', 'create')->name('create');
+            Route::post('/create', 'store')->name('store');
+            Route::get('/edit/{role:uuid}', 'edit')->name('edit');
+            Route::put('/edit/{role:uuid}', 'update')->name('update');
+            Route::delete('/delete/{role:uuid}', 'destroy')->name('destroy');
+        });
+    });
+
+    Route::prefix('roles')->name('roles.')->group(function() {
+        Route::controller(RoleController::class)->group(function() {
+            Route::get('/', 'index')->name('index');
+            Route::get('/create', 'create')->name('create');
+            Route::post('/create', 'store')->name('store');
+            Route::get('/edit/{role:id}', 'edit')->name('edit');
+            Route::put('/edit/{role:id}', 'update')->name('update');
+            Route::delete('/delete/{role:id}', 'destroy')->name('destroy');
         });
     });
 

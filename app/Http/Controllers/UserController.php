@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\Users\UserStore;
-use App\Models\Classroom;
-use App\Models\Major;
 use App\Models\User;
+use App\Models\Major;
+use App\Models\Classroom;
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Hash;
+use App\Http\Requests\Users\UserStore;
+use App\Http\Requests\Users\UserUpdate;
 use Illuminate\Support\Facades\Storage;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -29,7 +31,8 @@ class UserController extends Controller
     {
         $classrooms = Classroom::all();
         $majors = Major::all();
-        return view('users.create', compact('classrooms', 'majors'));
+        $roles = Role::pluck('name','name')->all();
+        return view('users.create', compact('classrooms', 'majors', 'roles'));
     }
 
     /**
@@ -57,6 +60,8 @@ class UserController extends Controller
                 'gender' => $request->gender,
                 'address' => $request->address,
             ]);
+
+            $user->assignRole($request->roles);
         } else {
             $user = User::create([
                 'classroom_id' => $request->classroom,
@@ -69,6 +74,7 @@ class UserController extends Controller
                 'gender' => $request->gender,
                 'address' => $request->address,
             ]);
+            $user->assignRole($request->roles);
         }
     
         Alert::success('Success', 'User Created Successfully');
@@ -90,13 +96,14 @@ class UserController extends Controller
     {
         $classrooms = Classroom::all();
         $majors = Major::all();
-        return view('users.edit', compact('user', 'classrooms', 'majors'));
+        $userRole = $user->roles->pluck('name', 'name')->all();
+        return view('users.edit', compact('user', 'classrooms', 'majors', 'userRole'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, User $user)
+    public function update(UserUpdate $request, User $user)
     {
         if ($request->hasFile('avatar')) {
 
@@ -119,7 +126,7 @@ class UserController extends Controller
                 'gender' => $request->gender,
                 'address' => $request->address,
             ]);
-
+            $user->assignRole($request->roles);
         } else {
             $user->update([
                 'classroom_id' => $request->classroom,
@@ -132,6 +139,7 @@ class UserController extends Controller
                 'gender' => $request->gender,
                 'address' => $request->address,
             ]);
+            $user->assignRole($request->roles);
         }
         Alert::success('Success', 'Updated Successfully');
         return to_route('users.index');
