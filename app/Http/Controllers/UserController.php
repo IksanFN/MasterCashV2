@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\Users\UserStore;
-use App\Models\Classroom;
-use App\Models\Major;
 use App\Models\User;
+use App\Models\Major;
+use App\Models\Classroom;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Hash;
+use App\Http\Requests\Users\UserStore;
 use Illuminate\Support\Facades\Storage;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -27,9 +29,10 @@ class UserController extends Controller
      */
     public function create()
     {
+        $roles = Role::pluck('name', 'name')->all();
         $classrooms = Classroom::all();
         $majors = Major::all();
-        return view('users.create', compact('classrooms', 'majors'));
+        return view('users.create', compact('classrooms', 'majors', 'roles'));
     }
 
     /**
@@ -70,7 +73,9 @@ class UserController extends Controller
                 'address' => $request->address,
             ]);
         }
-    
+
+        $user->assignRole($request->roles);
+
         Alert::success('Success', 'User Created Successfully');
         return to_route('users.index');
     }
@@ -90,7 +95,8 @@ class UserController extends Controller
     {
         $classrooms = Classroom::all();
         $majors = Major::all();
-        return view('users.edit', compact('user', 'classrooms', 'majors'));
+        $roles = Role::pluck('name','name')->all();
+        return view('users.edit', compact('user', 'classrooms', 'majors', 'roles'));
     }
 
     /**
@@ -133,6 +139,10 @@ class UserController extends Controller
                 'address' => $request->address,
             ]);
         }
+
+        DB::table('model_has_roles')->where('model_id', $user->id)->delete();
+        $user->assignRole($request->roles);
+
         Alert::success('Success', 'Updated Successfully');
         return to_route('users.index');
     }

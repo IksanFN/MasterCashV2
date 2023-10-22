@@ -33,6 +33,7 @@ class UserStore extends FormRequest
             'phone' => ['nullable', 'min:8', 'numeric'],
             'gender' => ['required', 'in:Male,Female'],
             'address' => ['nullable', 'string'],
+            'roles' => ['required'],
         ];
     }
 }
