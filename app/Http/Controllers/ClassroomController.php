@@ -11,10 +11,10 @@ class ClassroomController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('permission:classroom-list|classroom-create|classroom-edit|classroom-delete', ['only' => ['index','show']]);
-        $this->middleware('permission:classroom-create', ['only' => ['create','store']]);
-        $this->middleware('permission:classroom-edit', ['only' => ['edit','update']]);
-        $this->middleware('permission:classroom-delete', ['only' => ['destroy']]);
+        // $this->middleware('permission:classroom-list|classroom-create|classroom-edit|classroom-delete', ['only' => ['index','show']]);
+        // $this->middleware('permission:classroom-create', ['only' => ['create','store']]);
+        // $this->middleware('permission:classroom-edit', ['only' => ['edit','update']]);
+        // $this->middleware('permission:classroom-delete', ['only' => ['destroy']]);
     }
     /**
      * Display a listing of the resource.
@@ -70,7 +70,7 @@ class ClassroomController extends Controller
     public function update(Request $request, Classroom $classroom)
     {
         $this->validate($request, [
-            'title' => ['required', Rule::unique('classrooms', 'id')->ignore($classroom->id, 'id')],
+            'title' => ['required', 'unique:classrooms,title,'.$classroom->id.',id'],
         ]);
 
         $classroom->update($request->all());

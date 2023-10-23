@@ -11,8 +11,11 @@
                     <form action="{{ route('classrooms.store') }}" method="post">
                     @csrf
                         <div class="mb-3">
-                            <label for="title" class="form-label">title</label>
+                            <label for="title" class="form-label">Name</label>
                             <input type="text" class="form-control" name="title">
+                            @error('title')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
                         </div>
                         <div class="mt-3 text-center">
                             <button type="submit" class="btn btn-dark px-4 shadow-sm">
