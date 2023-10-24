@@ -109,7 +109,6 @@ class UserController extends Controller
                 'avatar' => $avatar->hashName(),
                 'name' => $request->name,
                 'email' => $request->email,
-                'password' => Hash::make($request->password),
                 'phone' => $request->phone,
                 'is_student' => false,
             ]);
@@ -120,7 +119,6 @@ class UserController extends Controller
             $user->update([
                 'name' => $request->name,
                 'email' => $request->email,
-                'password' => Hash::make($request->password),
                 'phone' => $request->phone,
                 'is_student' => false,
             ]);

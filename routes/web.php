@@ -23,9 +23,9 @@ Route::middleware('auth')->group(function () {
             Route::get('/', 'index')->name('index');
             Route::get('/create', 'create')->name('create');
             Route::post('/create', 'store')->name('store');
-            Route::get('/edit/{uuid}', 'edit')->name('edit');
-            Route::put('/edit/{uuid}', 'update')->name('update');
-            Route::delete('/delete/{uuid}', 'destroy')->name('destroy');
+            Route::get('/edit/{user:uuid}', 'edit')->name('edit');
+            Route::put('/edit/{user:uuid}', 'update')->name('update');
+            Route::delete('/delete/{user:uuid}', 'destroy')->name('destroy');
         });
     });
 

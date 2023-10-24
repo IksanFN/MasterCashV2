@@ -41,13 +41,6 @@
                             @enderror
                         </div>
                         <div class="mb-3">
-                            <label for="" class="form-label">Password</label>
-                            <input type="password" class="form-control" name="password">
-                            @error('password')
-                                <span class="text-danger">{{ $message }}</span>
-                            @enderror
-                        </div>
-                        <div class="mb-3">
                             <label for="" class="form-label">Role</label>
                             <select class="form-select" aria-label="Default select example" name="roles">
                                 <option value="default" hidden>Choose Role</option>
