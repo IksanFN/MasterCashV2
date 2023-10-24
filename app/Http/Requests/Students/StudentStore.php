@@ -1,12 +1,11 @@
 <?php
 
-namespace App\Http\Requests\Users;
+namespace App\Http\Requests\Students;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Validation\Rule;
 
-class UserUpdate extends FormRequest
+class StudentStore extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,11 +24,15 @@ class UserUpdate extends FormRequest
     {
         return [
             'avatar' => ['nullable', 'image', 'mimes:png,jpg,jpeg'],
+            'classroom' => ['required', 'not_in:default'],
+            'major' => ['required', 'not_in:default'],
+            'nisn' => ['required', 'numeric', 'unique:users'],
             'name' => ['required', 'string'],
-            'email' => ['required', 'email', Rule::unique('users', 'email')->ignore($this->user->uuid, 'uuid')],
-            'password' => ['nullable', 'min:6'],
-            'phone' => ['nullable', 'min:8'],
-            'roles' => ['required'],
+            'email' => ['required', 'email', 'unique:users'],
+            'password' => ['required', 'min:6'],
+            'phone' => ['nullable', 'min:8', 'numeric'],
+            'gender' => ['required', 'in:Male,Female'],
+            'address' => ['nullable', 'string'],
         ];
     }
 }

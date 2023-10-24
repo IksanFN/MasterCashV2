@@ -60,4 +60,14 @@ class User extends Authenticatable
     {
         return 'uuid';
     }
+
+    public function classroom()
+    {
+        return $this->belongsTo(Classroom::class);
+    }
+
+    public function major()
+    {
+        return $this->belongsTo(Major::class);
+    }
 }

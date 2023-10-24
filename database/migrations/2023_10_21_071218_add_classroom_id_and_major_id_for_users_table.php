@@ -15,8 +15,8 @@ return new class extends Migration
             $table->foreignId('classroom_id')->nullable()->after('uuid');
             $table->foreignId('major_id')->nullable()->after('uuid');
 
-            $table->foreign('classroom_id')->references('id')->on('users');
-            $table->foreign('major_id')->references('id')->on('users');
+            $table->foreign('classroom_id')->references('id')->on('classrooms');
+            $table->foreign('major_id')->references('id')->on('majors');
         });
     }
 

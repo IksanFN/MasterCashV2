@@ -4,19 +4,9 @@ use App\Http\Controllers\ClassroomController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\StudentController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
 
 Route::get('/', function () {
     return view('welcome');
@@ -30,6 +20,17 @@ Route::middleware('auth')->group(function () {
 
     Route::prefix('users')->name('users.')->group(function() {
         Route::controller(UserController::class)->group(function() {
+            Route::get('/', 'index')->name('index');
+            Route::get('/create', 'create')->name('create');
+            Route::post('/create', 'store')->name('store');
+            Route::get('/edit/{uuid}', 'edit')->name('edit');
+            Route::put('/edit/{uuid}', 'update')->name('update');
+            Route::delete('/delete/{uuid}', 'destroy')->name('destroy');
+        });
+    });
+
+    Route::prefix('students')->name('students.')->group(function() {
+        Route::controller(StudentController::class)->group(function() {
             Route::get('/', 'index')->name('index');
             Route::get('/create', 'create')->name('create');
             Route::post('/create', 'store')->name('store');
@@ -49,7 +50,7 @@ Route::middleware('auth')->group(function () {
             Route::delete('/delete/{role:uuid}', 'destroy')->name('destroy');
         });
     });
-
+    
     Route::prefix('classrooms')->name('classrooms.')->group(function() {
         Route::controller(ClassroomController::class)->group(function() {
             Route::get('/', 'index')->name('index');

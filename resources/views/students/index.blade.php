@@ -1,7 +1,7 @@
-<x-master-layout>
+<x-master-layout title="Students">
 
     @section('header')
-        <h4>Users</h4>
+        <h4>Students</h4>
     @endsection
 
     <div class="row">
@@ -30,7 +30,7 @@
                             </select> --}}
                         </div>
                         <div class="col-md-2 ms-auto text-end">
-                            <a href="{{ route('users.create') }}" class="btn btn-dark shadow-sm" ><i class="bi bi-person-plus-fill"></i></a>
+                            <a href="{{ route('students.create') }}" class="btn btn-dark shadow-sm" ><i class="bi bi-person-plus-fill"></i></a>
                             <a href="" wire:click.prevent='export' class="btn btn-success shadow-sm"><i class="bi bi-file-earmark-fill me-1"></i></a>
                         </div>
                         <div class="col-md-2">
@@ -47,40 +47,44 @@
                         <table class="table">
                             <thead>
                                 <th>No</th>
-                                <th>Name</th>
+                                <th>NISN</th>
+                                <th>Nama</th>
                                 <th>Email</th>
+                                <th>Kelas</th>
                                 <th>Status</th>
                                 <th class="text-center">Action</th>
                             </thead>
                             <tbody class="align-middle">
-                                @forelse ($users as $user)
+                                @forelse ($students as $student)
                                     <tr>
-                                        <td>{{$loop->iteration}}</td>
-                                        <td>{{$user->name}}</td>
-                                        <td>{{$user->email}}</td>
+                                        <td>{{ $loop->iteration }}</td>
+                                        <td>{{ $student->nisn }}</td>
+                                        <td>{{ $student->name }}</td>
+                                        <td>{{ $student->email }}</td>
+                                        <td>{{ $student->classroom->title }}</td>
                                         <td>
-                                            @if ($user->is_active)
+                                            @if ($student->is_active)
                                                 <span class="badge bg-success">Active</span>
                                             @else
                                                 <span class="badge bg-danger">Non Active</span>
                                             @endif
                                         </td>
                                         <td class="text-center">
-                                            <a href="{{ route('users.edit', $user->uuid) }}" class="btn btn-dark"><i class="bi bi-pencil-square"></i></a>
-                                            <button type="button" class="btn btn-dark shadow-sm" data-bs-toggle="modal" data-bs-target="#hapusUser">
+                                            <a href="{{ route('students.edit', $student->uuid) }}" class="btn btn-dark"><i class="bi bi-pencil-square"></i></a>
+                                            <button type="button" class="btn btn-dark shadow-sm" data-bs-toggle="modal" data-bs-target="#hapusStudent">
                                                 <i class="bi bi-trash3-fill"></i>
                                             </button>
                                             <!-- Modal -->
-                                            <div class="modal fade" id="hapusUser" tabindex="-1" aria-labelledby="hapusUserLabel" aria-hidden="true">
+                                            <div class="modal fade" id="hapusStudent" tabindex="-1" aria-labelledby="hapusStudentLabel" aria-hidden="true">
                                                 <div class="modal-dialog">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                    <h1 class="modal-title fs-5" id="hapusUserLabel">Hapus User</h1>
+                                                    <h1 class="modal-title fs-5" id="hapusStudentLabel">Hapus Student</h1>
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                     </div>
                                                     <div class="modal-body">
                                                         <p>Apakah anda yakin akan menghapus nya?</p>
-                                                        <form action="{{ route('users.destroy', $user->uuid) }}" method="post">
+                                                        <form action="{{ route('students.destroy', $student->uuid) }}" method="post">
                                                         @csrf
                                                         @method('DELETE')
                                                     </div>
@@ -101,7 +105,7 @@
                                 @endforelse
                             </tbody>
                         </table>
-                        {{-- {{ $users->links }} --}}
+                        {{-- {{ $students->links }} --}}
                     </div>
 
                 </div>

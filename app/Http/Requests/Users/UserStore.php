@@ -24,15 +24,11 @@ class UserStore extends FormRequest
     {
         return [
             'avatar' => ['nullable', 'image', 'mimes:png,jpg,jpeg'],
-            'classroom' => ['required', 'not_in:default'],
-            'major' => ['required', 'not_in:default'],
-            'nisn' => ['required', 'numeric', 'unique:users'],
             'name' => ['required', 'string'],
             'email' => ['required', 'email', 'unique:users'],
             'password' => ['required', 'min:6'],
             'phone' => ['nullable', 'min:8', 'numeric'],
-            'gender' => ['required', 'in:Male,Female'],
-            'address' => ['nullable', 'string'],
+            'roles[]' => ['required', 'not_in:defaul'],
         ];
     }
 }

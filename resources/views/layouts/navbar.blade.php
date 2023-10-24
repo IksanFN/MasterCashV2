@@ -12,7 +12,7 @@
             </x-navbar-link>
           </li>
           <li class="nav-item">
-            <x-navbar-link :href="route('users.index')" :active="request()->routeIs('users.*')">
+            <x-navbar-link :href="route('students.index')" :active="request()->routeIs('students.*')">
               Students
             </x-navbar-link>
           </li>
@@ -46,14 +46,16 @@
           </li> --}}
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle " href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Pengaturan
+              Management
             </a>
             <ul class="dropdown-menu border-0 shadow-smooth p-3">
+              <li><a class="dropdown-item" href="{{ route('users.index') }}">Users</a></li>
               <li><a class="dropdown-item" href="{{ route('roles.index') }}">Roles</a></li>
               <li><a class="dropdown-item" href="{{ route('permissions.index') }}">Permissions</a></li>
               <li><a class="dropdown-item" href="{{ route('classrooms.index') }}">Classrooms</a></li>
             </ul>
           </li>
+          
         </ul>
         {{-- @auth --}}
         <div class="flex-shrink-0 dropdown">

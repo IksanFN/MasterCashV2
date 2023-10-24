@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Major;
 use App\Models\Classroom;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\Users\UserStore;
@@ -20,7 +21,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::query()->latest()->paginate();
+        $users = User::query()->whereNot('is_student', true)->latest()->paginate();
         return view('users.index', compact('users'));
     }
 
@@ -31,7 +32,7 @@ class UserController extends Controller
     {
         $classrooms = Classroom::all();
         $majors = Major::all();
-        $roles = Role::pluck('name','name')->all();
+        $roles = Role::get('name');
         return view('users.create', compact('classrooms', 'majors', 'roles'));
     }
 
@@ -50,29 +51,20 @@ class UserController extends Controller
             // Create
             $user = User::create([
                 'avatar' => $avatar->hashName(),
-                'classroom_id' => $request->classroom,
-                'major_id' => $request->major,
-                'nisn' => $request->nisn,
                 'name' => $request->name,
                 'email' => $request->email,
                 'password' => Hash::make($request->password),
                 'phone' => $request->phone,
-                'gender' => $request->gender,
-                'address' => $request->address,
+                'is_student' => false,
             ]);
-
             $user->assignRole($request->roles);
         } else {
             $user = User::create([
-                'classroom_id' => $request->classroom,
-                'major_id' => $request->major,
-                'nisn' => $request->nisn,
                 'name' => $request->name,
                 'email' => $request->email,
                 'password' => Hash::make($request->password),
                 'phone' => $request->phone,
-                'gender' => $request->gender,
-                'address' => $request->address,
+                'is_student' => false,
             ]);
             $user->assignRole($request->roles);
         }
@@ -94,10 +86,9 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        $classrooms = Classroom::all();
-        $majors = Major::all();
-        $userRole = $user->roles->pluck('name', 'name')->all();
-        return view('users.edit', compact('user', 'classrooms', 'majors', 'userRole'));
+        $userRole = $user->roles->first();
+        $roles = Role::all();
+        return view('users.edit', compact('user', 'userRole', 'roles'));
     }
 
     /**
@@ -116,29 +107,24 @@ class UserController extends Controller
             
             $user->update([
                 'avatar' => $avatar->hashName(),
-                'classroom_id' => $request->classroom,
-                'major_id' => $request->major,
-                'nisn' => $request->nisn,
                 'name' => $request->name,
                 'email' => $request->email,
                 'password' => Hash::make($request->password),
                 'phone' => $request->phone,
-                'gender' => $request->gender,
-                'address' => $request->address,
+                'is_student' => false,
             ]);
+            
+            DB::table('model_has_roles')->where('model_id', $user->id)->delete();
             $user->assignRole($request->roles);
         } else {
             $user->update([
-                'classroom_id' => $request->classroom,
-                'major_id' => $request->major,
-                'nisn' => $request->nisn,
                 'name' => $request->name,
                 'email' => $request->email,
                 'password' => Hash::make($request->password),
                 'phone' => $request->phone,
-                'gender' => $request->gender,
-                'address' => $request->address,
+                'is_student' => false,
             ]);
+            DB::table('model_has_roles')->where('model_id', $user->id)->delete();
             $user->assignRole($request->roles);
         }
         Alert::success('Success', 'Updated Successfully');
