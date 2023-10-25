@@ -19,10 +19,9 @@ class DatabaseSeeder extends Seeder
             AdminUserSeeder::class,
             ClassroomSeeder::class,
             MajorSeeder::class,
+            YearSeeder::class,
+            MonthSeeder::class,
+            WeekSeeder::class,
         ]);
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
     }
 }

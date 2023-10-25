@@ -16,12 +16,12 @@
               Students
             </x-navbar-link>
           </li>
-          {{-- <li class="nav-item">
+          <li class="nav-item">
             <x-navbar-link :href="route('bills.index')" :active="request()->routeIs('bills.*')">
             Bills
             </x-navbar-link>
           </li>
-          <li class="nav-item">
+          {{-- <li class="nav-item">
             <x-navbar-link :href="route('transactions.index')" :active="request()->routeIs('transactions.*')">
             Transactions
             </x-navbar-link>

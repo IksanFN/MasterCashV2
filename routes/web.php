@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BillController;
 use App\Http\Controllers\ClassroomController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\ProfileController;
@@ -81,6 +82,14 @@ Route::middleware('auth')->group(function () {
             Route::get('/edit/{permission:id}', 'edit')->name('edit');
             Route::put('/edit/{permission:id}', 'update')->name('update');
             Route::delete('/delete/{permission:id}', 'destroy')->name('destroy');
+        });
+    });
+
+    Route::prefix('bills')->name('bills.')->group(function() {
+        Route::controller(BillController::class)->group(function() {
+            Route::get('/', 'index')->name('index');
+            Route::get('/create-by-classroom', 'createByClassroom')->name('create_by_classroom');
+            Route::post('/create-by-classroom', 'storeByClassroom')->name('store_by_classroom');
         });
     });
 
