@@ -6,7 +6,7 @@
 
     <div class="row justify-content-center">
         <div class="col-md-6 col-lg-6">
-            <div class="card border-0 shadow-smooth p-2">
+            <div class="card border-0 shadow-smooth p-2 bg-white">
                 <div class="card-body">
 
                     <form action="{{ route('users.update', $user->uuid) }}" method="post" enctype="multipart/form-data">
@@ -50,7 +50,7 @@
                             </select>
                         </div>
                         <div class="mt-3 text-center">
-                            <button type="submit" class="btn btn-dark px-4">Save</button>
+                            <button type="submit" class="btn btn-secondary px-4">Save</button>
                         </div>
                     </form>
 

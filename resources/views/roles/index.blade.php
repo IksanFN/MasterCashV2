@@ -31,7 +31,6 @@
                             <thead>
                                 <th>No</th>
                                 <th>Nama</th>
-                                <th>Email</th>
                                 <th class="text-center">Action</th>
                             </thead>
                             <tbody class="align-middle">

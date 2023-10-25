@@ -1,6 +1,6 @@
-<nav class="navbar navbar-expand-lg bg-white py-3 sticky-top shadow-smooth">
+<nav class="navbar navbar-expand-lg py-3 bg-white sticky-top shadow-smooth">
     <div class="container">
-      <a class="navbar-brand fw-bold text-dark" href="">SanCash</a>
+      <a class="navbar-brand fw-bold" href="">SanCash</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>

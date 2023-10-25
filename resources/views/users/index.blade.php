@@ -6,9 +6,10 @@
 
     <div class="row">
         <div class="col-md-6 col-lg-12 col-sm-12">
-            <div class="card border-0 shadow-smooth p-2">
+            <div class="card shadow-smooth border-0 p-2">
                 <div class="card-body">
 
+                    
                     <div class="row mb-5">
                         <div class="col-md-3">
                             <input type="text" wire:model.live.debounce.500ms='query' placeholder="Search" class="form-control">
@@ -30,7 +31,7 @@
                             </select> --}}
                         </div>
                         <div class="col-md-2 ms-auto text-end">
-                            <a href="{{ route('users.create') }}" class="btn btn-dark shadow-sm" ><i class="bi bi-person-plus-fill"></i></a>
+                            <a href="{{ route('users.create') }}" class="btn btn-secondary shadow-sm" ><i class="bi bi-person-plus-fill"></i></a>
                             <a href="" wire:click.prevent='export' class="btn btn-success shadow-sm"><i class="bi bi-file-earmark-fill me-1"></i></a>
                         </div>
                         <div class="col-md-2">
