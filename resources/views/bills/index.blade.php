@@ -59,16 +59,16 @@
                                             <td>{{ $loop->iteration }}</td>
                                             {{-- <td>{{ $loop->index + $bills->firstItem() }}</td> --}}
                                             <td>{{ $bill->bill_code }}</td>
-                                            <td>{{ $bill->student->nisn }}</td>
-                                            <td>{{ $bill->student->name }}</td>
-                                            <td>{{ $bill->student->classroom->title }}</td>
+                                            <td>{{ $bill->user->nisn }}</td>
+                                            <td>{{ $bill->user->name }}</td>
+                                            <td>{{ $bill->user->classroom->title }}</td>
                                             <td>{{ number_format($bill->bill) }}</td>
                                             <td>{{ $bill->week->title }}, {{ $bill->month->title }} {{ $bill->year->title }}</td>
                                             <td>
                                                 @if ($bill->is_paid)
                                                     <span class="badge bg-success">Paid</span>
                                                 @else
-                                                    <span class="badge bg-danger">Waiting</span>
+                                                    <span class="badge bg-danger">Unpaid</span>
                                                 @endif
                                             </td>
                                             <td class="text-center">

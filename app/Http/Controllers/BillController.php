@@ -17,7 +17,7 @@ class BillController extends Controller
 {
     public function index()
     {
-        $bills = Transaction::query()->where('is_paid', false)->where('payment_status', 'Unpaid')->latest()->paginate();
+        $bills = Transaction::query()->with('user')->where('is_paid', false)->where('payment_status', 'Unpaid')->latest()->paginate();
         return view('bills.index', compact('bills'));
     }
 
@@ -35,7 +35,7 @@ class BillController extends Controller
         $students = User::query()->with('classroom')->whereClassroomId($request->classroom)->get();
         
         // Check data students
-        if ($students) {
+        if (!$students) {
             Alert::warning('Information', 'Students doesn\'t exist');
             return back();
         }
@@ -61,13 +61,13 @@ class BillController extends Controller
             // Create bill
             $bill = new Transaction();
             $bill->uuid = Str::uuid();
-            $bill->student_id = $student->id;
+            $bill->user_id = $student->id;
             $bill->year_id = $year->id;
             $bill->month_id = $month->id;
             $bill->week_id = $week->id;
             $bill->bill_code = $billCode;
             $bill->bill = $request->bill;
-            $bill->payment_status = 'Waiting';
+            $bill->payment_status = 'Unpaid';
             $bill->save();
 
             // Check Query 

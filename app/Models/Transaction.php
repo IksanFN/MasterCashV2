@@ -19,5 +19,25 @@ class Transaction extends Model
         });
     }
 
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function year()
+    {
+        return $this->belongsTo(Year::class);
+    }
+
+    public function month()
+    {
+        return $this->belongsTo(Month::class);
+    }
+
+    public function week()
+    {
+        return $this->belongsTo(Week::class);
+    }
+
     protected $guarded = ['id'];
 }
