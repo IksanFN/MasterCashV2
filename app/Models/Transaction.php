@@ -10,6 +10,8 @@ class Transaction extends Model
 {
     use HasFactory;
 
+    protected $guarded = ['id'];
+
     public static function boot()
     {
         parent::boot();
@@ -39,5 +41,9 @@ class Transaction extends Model
         return $this->belongsTo(Week::class);
     }
 
-    protected $guarded = ['id'];
+    public function getRouteKeyName()
+    {
+        return 'uuid';
+        
+    }    
 }

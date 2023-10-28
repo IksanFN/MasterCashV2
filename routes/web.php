@@ -1,11 +1,13 @@
 <?php
 
 use App\Http\Controllers\BillController;
+use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\ClassroomController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -89,6 +91,14 @@ Route::middleware('auth')->group(function () {
         Route::controller(BillController::class)->group(function() {
             Route::get('/', 'index')->name('index');
             Route::get('/create-by-classroom', 'createByClassroom')->name('create_by_classroom');
+            Route::post('/create-by-classroom', 'storeByClassroom')->name('store_by_classroom');
+        });
+    });
+
+    Route::prefix('checkouts')->name('checkouts.')->group(function() {
+        Route::controller(CheckoutController::class)->group(function() {
+            Route::get('/checkout/{transaction}', 'index')->name('checkout');
+            Route::put('/checkout/{transaction}', 'storeCheckout')->name('store_checkout');
             Route::post('/create-by-classroom', 'storeByClassroom')->name('store_by_classroom');
         });
     });
