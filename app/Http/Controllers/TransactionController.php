@@ -44,6 +44,19 @@ class TransactionController extends Controller
          return to_route('transactions.cancel');
     }
 
+    public function storeConfirm(Transaction $transaction)
+    {
+        $transaction->update([
+            'payment_status' => 'Paid',
+            'is_verified' => true,
+            'payment_verified' => true,
+            'verified_date' => Carbon::now(),
+        ]);
+
+        Alert::success('Success', 'Transaction Verified Successfully');
+        return to_route('transactions.paid');
+    }
+
     public function invoice($uuid)
     {
         $invoice = Transaction::query()->with(['user', 'year', 'month', 'week'])->where('uuid', $uuid)->first();

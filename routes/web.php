@@ -114,6 +114,7 @@ Route::middleware('auth')->group(function () {
         Route::controller(TransactionController::class)->group(function() {
             Route::get('/paid', 'paid')->name('paid');
             Route::get('/waiting', 'waitingConfirm')->name('waiting');
+            Route::put('/confirm/{transaction:uuid}', 'storeConfirm')->name('store_confirm');
             Route::get('/cancel', 'cancel')->name('cancel');
             Route::put('/cancel/{transaction:uuid}', 'storeCancel')->name('store_cancel');
             // Route::put('/', 'paymentCash')->name('store');

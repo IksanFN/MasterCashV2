@@ -6,7 +6,7 @@
 
     <div class="row justify-content-center">
         <div class="col-md-6 col-lg-8">
-            <a href="{{ route('transactions.index') }}" class="btn btn-outline-dark shadow-smooth">Back</a>
+            <a href="{{ route('transactions.paid') }}" class="btn btn-outline-dark shadow-smooth">Back</a>
             <a href="" class="btn btn-danger shadow-smooth">PDF</a>
             <div class="card border-0 shadow-smooth p-3 mt-3">
                 <div class="card-body">

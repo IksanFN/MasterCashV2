@@ -54,10 +54,10 @@ class PaymentTransferController extends Controller
 
         if ($payment) {
             Alert::success('Success', 'Payment is Process');
-            return to_route('transactions.index');
+            return to_route('transactions.waiting');
         } else {
             Alert::error('Error', 'Something Wrong! Try Again Later');
-            return to_route('transactions.index');
+            return to_route('transactions.waiting');
         }
 
     }

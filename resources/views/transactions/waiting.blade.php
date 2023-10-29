@@ -37,7 +37,32 @@
                                         </td>
                                         <td>{{ $transaction->payment_date }}</td>
                                         <td class="text-center">
-                                            <a href="{{ route('transactions.invoice', $transaction->uuid) }}" class="btn btn-dark shadow-sm"><i class="bi bi-receipt"></i></a>
+                                            <button type="button" class="btn btn-success shadow-sm" data-bs-toggle="modal" data-bs-target="#confirmTransaction">
+                                                <i class="bi bi-check-circle"></i>
+                                            </button>
+                                            <!-- Modal -->
+                                            <div class="modal fade" id="confirmTransaction" tabindex="-1" aria-labelledby="confirmTransactionLabel" aria-hidden="true">
+                                                <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                    <h1 class="modal-title fs-5" id="confirmTransactionLabel">Confirm Transaction</h1>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <p>Are you sure you will confirm this transaction??</p>
+                                                        <form action="{{ route('transactions.store_confirm', $transaction->uuid) }}" method="post">
+                                                        @csrf
+                                                        @method('PUT')
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                                                        <button type="submit" class="btn btn-success">Cancel Transaction</button>
+                                                    </form>
+                                                    </div>
+                                                </div>
+                                                </div>
+                                            </div>
+                                            {{-- <a href="{{ route('transactions.store_confirm', $transaction->uuid) }}" class="btn btn-dark shadow-sm"><i class="bi bi-receipt"></i></a> --}}
                                             {{-- <a href="{{ route('transactions.edit', $bill->uuid) }}" class="btn btn-sm btn-warning text-white shadow-sm"><i class="bi bi-pencil-square"></i></a> --}}
                                             <button type="button" class="btn btn-danger shadow-sm" data-bs-toggle="modal" data-bs-target="#cancelTransaction">
                                                 <i class="bi bi-x-circle"></i>
