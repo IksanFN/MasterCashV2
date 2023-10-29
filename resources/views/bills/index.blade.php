@@ -72,33 +72,35 @@
                                                 @endif
                                             </td>
                                             <td class="text-center">
-                                                <a href="{{ route('checkouts.checkout', $bill->uuid) }}" class="btn btn-dark shadow-sm"><i class="bi bi-credit-card me-1"></i> Checkout</a>
+                                                {{-- <a href="{{ route('checkouts_cash.index', $bill->uuid) }}" class="btn btn-dark shadow-sm"><i class="bi bi-credit-card me-1"></i></a> --}}
                                                 {{-- <a href="{{ route('bills.edit', $bill->uuid) }}" class="btn btn-sm btn-warning text-white shadow-sm"><i class="bi bi-pencil-square"></i></a> --}}
-                                                {{-- <button type="button" class="btn btn-danger btn-sm shadow-sm" data-bs-toggle="modal" data-bs-target="#hapusUser">
-                                                    <i class="bi bi-trash3-fill"></i>
+                                                <button type="button" class="btn btn-dark shadow-sm" data-bs-toggle="modal" data-bs-target="#Payment">
+                                                    <i class="bi bi-credit-card"></i>
                                                 </button>
                                                 <!-- Modal -->
-                                                <div class="modal fade" id="hapusUser" tabindex="-1" aria-labelledby="hapusUserLabel" aria-hidden="true">
+                                                <div class="modal fade" id="Payment" tabindex="-1" aria-labelledby="PaymentLabel" aria-hidden="true">
                                                     <div class="modal-dialog">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
-                                                        <h1 class="modal-title fs-5" id="hapusUserLabel">Hapus User</h1>
+                                                        <h1 class="modal-title fs-5" id="PaymentLabel">Payment</h1>
                                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                         </div>
                                                         <div class="modal-body">
-                                                            <p>Apakah anda yakin akan menghapus nya?</p>
-                                                            <form action="{{ route('checkouts.checkout_payment_gateway', $bill->id) }}" method="post">
+                                                            <p>Please choose one method</p>
+                                                            <a href="{{ route('checkouts_cash.index', $bill->uuid) }}" class="btn btn-primary shadow-smooth">Checkout Cash</a>
+                                                            <a href="{{ route('transactions.payment_transfer.checkout', $bill->uuid) }}" class="btn btn-secondary shadow-smooth">Checkout Transfer</a>
+                                                            {{-- <form action="" method="post">
                                                             @csrf
-                                                            @method('PUT')
+                                                            @method('PUT') --}}
                                                         </div>
                                                         <div class="modal-footer">
-                                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                                                            <button type="submit" class="btn btn-primary">Hapus</button>
+                                                            <button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal">Tutup</button>
+                                                            {{-- <button type="submit" class="btn btn-primary">Hapus</button> --}}
                                                         </form>
                                                         </div>
                                                     </div>
                                                     </div>
-                                                </div> --}}
+                                                </div>
                                             </td>
                                         </tr>
                                     @empty

@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder
             YearSeeder::class,
             MonthSeeder::class,
             WeekSeeder::class,
+            PaymentAccountSeeder::class,
         ]);
     }
 }

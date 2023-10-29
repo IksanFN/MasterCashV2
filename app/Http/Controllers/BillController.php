@@ -4,12 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\Week;
 use App\Models\Year;
-use App\Models\Month;
 use App\Models\Transaction;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Requests\Bills\BillStore;
 use App\Models\Classroom;
+use App\Models\Month;
 use App\Models\User;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -32,12 +32,16 @@ class BillController extends Controller
 
     public function storeByClassroom(BillStore $request)
     {
+        // Get User by Classroom
         $students = User::query()->with('classroom')->whereClassroomId($request->classroom)->get();
         
+        // Get Data Classroom
+        $classroom = Classroom::find($request->classroom); 
+
         // Check data students
-        if (!$students) {
-            Alert::warning('Information', 'Students doesn\'t exist');
-            return back();
+        if ($students->count() == 0) {
+            Alert::warning('Information', 'Students doesn\'t exist in classroom '.$classroom->title);
+            return back()->withInput();
         }
 
         // Get data year, month, and week

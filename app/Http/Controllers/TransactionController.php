@@ -4,79 +4,49 @@ namespace App\Http\Controllers;
 
 use Midtrans\Config;
 use App\Models\Transaction;
+use Carbon\Carbon;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Midtrans\Snap;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class TransactionController extends Controller
 {
-    public function __construct()
+    public function paid()
     {
-        Config::$serverKey = env('MIDTRANS_SERVERKEY');
-        Config::$isProduction = env('MIDTRANS_IS_PRODUCTION');
-        Config::$isSanitized = env('MIDTRANS_IS_SANITIZED');
-        Config::$is3ds = env('MIDTRASN_IS_3DS');
+        $transactions = Transaction::query()->where('is_paid', true)->where('payment_status', 'Paid')->latest()->paginate();
+        return view('transactions.paid', compact('transactions'));
     }
 
-    public function checkout(Transaction $transaction)
+    public function waitingConfirm()
     {
-        // return $transaction;
-        return view('checkouts.index', compact('transaction'));
+        $transactions = Transaction::query()->where('is_paid', true)->where('payment_status', 'Waiting')->latest()->paginate();
+        return view('transactions.waiting', compact('transactions'));
     }
 
-    public function integratePaymentGateway(Transaction $checkout)
+    public function cancel()
     {
-        $orderId = $checkout->id.'-'.Str::random(7);
-        $checkout->midtrans_booking_code = $orderId;
-        $name = $checkout->week->title.", ".$checkout->month->title." ".$checkout->year->title;
-
-        $item_details[] = [
-            'id' => $orderId,
-            'price' => $checkout->bill,
-            'name' => "Payment for {$name} Bill",
-        ];
-
-        $studentData = [
-            'first_name' => $checkout->user->name,
-            'last_name' => '',
-            'address' => $checkout->user->address,
-            'city' => '',
-            'postal_code' => '',
-            'phone' => $checkout->phone,
-            'country_code' => 'IDN',
-        ];
-
-        $transaction_details = [
-            'order_id' => $orderId,
-            'gross_amount' => $checkout->bill,
-        ];
-
-        $customer_details = [
-            'first_name' => $checkout->user->name,
-            'last_name' => '',
-            'email' => $checkout->user->email,
-            'phone' => $checkout->user->phone,
-            'billing_address' => $studentData,
-            'shipping_address' => $studentData,
-        ];
-
-        $midtrans_params = [
-            'transaction_details' => $transaction_details,
-            'customer_details' => $customer_details,
-            'items_details' => $item_details,
-        ];
-
-        try {
-            $paymentUrl = Snap::createTransaction($midtrans_params);
-            $snapToken = Snap::getSnapToken($midtrans_params);
-            $checkout->payment_url = $paymentUrl;
-            $checkout->token = $snapToken;
-            $checkout->save();
-        } catch (\Throwable $th) {
-            return false;
-        }
+        $transactions = Transaction::query()->where('is_cancel', true)->where('payment_status', 'Cancel')->latest()->paginate();
+        return view('transactions.cancel', compact('transactions'));
     }
 
-    
+    public function storeCancel(Transaction $transaction)
+    {
+         $transaction->update([
+            'is_cancel' => true,
+            'payment_status' => 'Cancel',
+            'cancel_date' => Carbon::now(),
+            'user_cancel' => Auth::user()->name,
+         ]);
+
+         Alert::success('Success', 'Payment Canceled Successfully');
+         return to_route('transactions.cancel');
+    }
+
+    public function invoice($uuid)
+    {
+        $invoice = Transaction::query()->with(['user', 'year', 'month', 'week'])->where('uuid', $uuid)->first();
+        return view('transactions.invoice', compact('invoice'));
+    }
 }

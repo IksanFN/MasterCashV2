@@ -3,6 +3,8 @@
 use App\Http\Controllers\BillController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\ClassroomController;
+use App\Http\Controllers\PaymentCashController;
+use App\Http\Controllers\PaymentTransferController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoleController;
@@ -95,11 +97,27 @@ Route::middleware('auth')->group(function () {
         });
     });
 
-    Route::prefix('checkouts')->name('checkouts.')->group(function() {
-        Route::controller(CheckoutController::class)->group(function() {
-            Route::get('/checkout/{transaction}', 'index')->name('checkout');
-            Route::put('/checkout/{transaction}', 'storeCheckout')->name('store_checkout');
-            Route::post('/create-by-classroom', 'storeByClassroom')->name('store_by_classroom');
+    Route::prefix('checkouts-cash')->name('checkouts_cash.')->group(function() {
+        Route::controller(PaymentCashController::class)->group(function() {
+            Route::get('/checkout/{uuid}', 'checkoutCash')->name('index');
+            Route::put('/checkout/{uuid}', 'paymentCash')->name('store');
+        });
+    });
+
+    Route::prefix('transactions')->name('transactions.')->group(function() {
+
+        Route::controller(PaymentTransferController::class)->name('payment_transfer.')->group(function() {
+            Route::get('/checkout-transfer/{uuid}', 'checkoutTransfer')->name('checkout');
+            Route::put('/checkout-transfer/{uuid}', 'paymentTransfer')->name('store_checkout');
+        });
+
+        Route::controller(TransactionController::class)->group(function() {
+            Route::get('/paid', 'paid')->name('paid');
+            Route::get('/waiting', 'waitingConfirm')->name('waiting');
+            Route::get('/cancel', 'cancel')->name('cancel');
+            Route::put('/cancel/{transaction:uuid}', 'storeCancel')->name('store_cancel');
+            // Route::put('/', 'paymentCash')->name('store');
+            Route::get('/invoice/{uuid}', 'invoice')->name('invoice');
         });
     });
 

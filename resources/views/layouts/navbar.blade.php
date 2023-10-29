@@ -26,6 +26,16 @@
             Transactions
             </x-navbar-link>
           </li> --}}
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle " href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Transactions
+            </a>
+            <ul class="dropdown-menu border-0 shadow-smooth p-3">
+              <li><a class="dropdown-item" href="{{ route('transactions.paid') }}">Paid</a></li>
+              <li><a class="dropdown-item" href="{{ route('transactions.waiting') }}">Waiting Confirm</a></li>
+              <li><a class="dropdown-item" href="{{ route('transactions.cancel') }}">Cancel</a></li>
+            </ul>
+          </li>
           {{-- <li class="nav-item">
             <x-navbar-link :href="route('bills.index')" :active="request()->routeIs('bills.*')">
             Bills

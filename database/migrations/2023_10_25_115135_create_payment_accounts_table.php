@@ -15,9 +15,9 @@ return new class extends Migration
             $table->id();
             $table->uuid()->unique();
             $table->string('account_name');
-            $table->string('account_title');
-            $table->string('account_number')->unique();
-            $table->enum('account_type', ['Bank', 'E-Wallet', 'Kas']);
+            $table->string('account_title')->nullable();
+            $table->string('account_number')->unique()->nullable();
+            $table->enum('account_type', ['Bank', 'E-Wallet', 'Treasurer Wallet']);
             $table->timestamps();
         });
     }
