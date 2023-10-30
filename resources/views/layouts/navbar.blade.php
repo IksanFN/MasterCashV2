@@ -7,7 +7,7 @@
       <div class="collapse navbar-collapse" id="navbarText">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0 gap-2">
           <li class="nav-item">
-            <x-navbar-link>
+            <x-navbar-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
               Dashboard
             </x-navbar-link>
           </li>
@@ -31,9 +31,9 @@
               Transactions
             </a>
             <ul class="dropdown-menu border-0 shadow-smooth p-3">
-              <li><a class="dropdown-item" href="{{ route('transactions.paid') }}">Paid</a></li>
-              <li><a class="dropdown-item" href="{{ route('transactions.waiting') }}">Waiting Confirm</a></li>
-              <li><a class="dropdown-item" href="{{ route('transactions.cancel') }}">Cancel</a></li>
+              <li><a wire:navigate class="dropdown-item" href="{{ route('transactions.paid') }}">Paid</a></li>
+              <li><a wire:navigate class="dropdown-item" href="{{ route('transactions.waiting') }}">Waiting Confirm</a></li>
+              <li><a wire:navigate class="dropdown-item" href="{{ route('transactions.cancel') }}">Cancel</a></li>
             </ul>
           </li>
           {{-- <li class="nav-item">
@@ -59,10 +59,10 @@
               Management
             </a>
             <ul class="dropdown-menu border-0 shadow-smooth p-3">
-              <li><a class="dropdown-item" href="{{ route('users.index') }}">Users</a></li>
-              <li><a class="dropdown-item" href="{{ route('roles.index') }}">Roles</a></li>
-              <li><a class="dropdown-item" href="{{ route('permissions.index') }}">Permissions</a></li>
-              <li><a class="dropdown-item" href="{{ route('classrooms.index') }}">Classrooms</a></li>
+              <li><a wire:navigate class="dropdown-item" href="{{ route('users.index') }}">Users</a></li>
+              <li><a wire:navigate class="dropdown-item" href="{{ route('roles.index') }}">Roles</a></li>
+              <li><a wire:navigate class="dropdown-item" href="{{ route('permissions.index') }}">Permissions</a></li>
+              <li><a wire:navigate class="dropdown-item" href="{{ route('classrooms.index') }}">Classrooms</a></li>
             </ul>
           </li>
           
