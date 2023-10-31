@@ -30,8 +30,9 @@ class BillList extends Component
         $classrooms = Classroom::all();
         $bills = Transaction::query()->where('is_paid', false)->where('payment_status', 'Unpaid')
                                 ->when($this->query, function($query) {
-                                    $query->whereHas('user', function($query) {
-                                        $query->where('nisn', 'like', '%'.$this->query.'%')
+                                    $query->where('bill_code', 'like', '%'.$this->query.'%')
+                                        ->orWhereHas('user', function($query) {
+                                            $query->where('nisn', 'like', '%'.$this->query.'%')
                                                 ->orWhere('name', 'like', '%'.$this->query.'%');
                                     });
                                 })
