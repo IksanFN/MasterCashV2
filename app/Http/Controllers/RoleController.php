@@ -24,7 +24,7 @@ class RoleController extends Controller
      */
     public function create()
     {
-        $permissions = Permission::all();
+        $permissions = Permission::get();
         return view('roles.create', compact('permissions'));
     }
 
@@ -42,6 +42,7 @@ class RoleController extends Controller
             'name' => $request->name,
         ]);
 
+        // $role->givePermissions($request->permission);
         $role->syncPermissions($request->permission);
 
         Alert::success('Success', 'Role Created Successfully');
@@ -78,11 +79,15 @@ class RoleController extends Controller
             'permission' => 'required',
         ]);
 
-        $role->name = $request->name;
-        $role->save();
+        $role->update([
+            'name' => $request->name
+        ]);
+        // $role->name = $request->name;
+        // $role->save();
+        
 
         $role->syncPermissions($request->permission);
-        DB::table('model_has_roles')->where('model_id', $role->id)->delete();
+        // DB::table('model_has_roles')->where('model_id', $role->id)->delete();
 
         Alert::success('Success', 'Role Updated Successfully');
         return to_route('roles.index');

@@ -22,9 +22,9 @@ class AdminUserSeeder extends Seeder
         $user->is_student = false;
         $user->save();
 
-        $role = Role::create(['name' => 'Admin']);
+        $role = Role::create(['name' => 'admin']);
         $permissions = Permission::pluck('id','id')->all();
-        $role->syncPermissions($permissions);
         $user->assignRole([$role->id]);
+        $role->syncPermissions($permissions);
     }
 }

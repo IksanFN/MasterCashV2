@@ -11,10 +11,10 @@ class ClassroomController extends Controller
 {
     public function __construct()
     {
-        // $this->middleware('permission:classroom-list|classroom-create|classroom-edit|classroom-delete', ['only' => ['index','show']]);
-        // $this->middleware('permission:classroom-create', ['only' => ['create','store']]);
-        // $this->middleware('permission:classroom-edit', ['only' => ['edit','update']]);
-        // $this->middleware('permission:classroom-delete', ['only' => ['destroy']]);
+        $this->middleware('permission:classroom-list|classroom-create|classroom-edit|classroom-delete', ['only' => ['index','show']]);
+        $this->middleware('permission:classroom-create', ['only' => ['create','store']]);
+        $this->middleware('permission:classroom-edit', ['only' => ['edit','update']]);
+        $this->middleware('permission:classroom-delete', ['only' => ['destroy']]);
     }
     /**
      * Display a listing of the resource.

@@ -68,13 +68,13 @@
                         </div>
                         <div class="mb-3">
                             <label for="" class="form-label">Role</label>
-                            <select name="roles[]" id="" class="form-select">
+                            <select name="roles" id="" class="form-select">
                                 <option value="default" hidden>Choose Role</option>
                                 @foreach ($roles as $role)
                                     <option value="{{ $role->name }}">{{ $role->name }}</option>
                                 @endforeach
                             </select>
-                            @error('roles[]')
+                            @error('roles')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>

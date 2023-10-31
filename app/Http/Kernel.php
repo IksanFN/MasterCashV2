@@ -15,6 +15,9 @@ class Kernel extends HttpKernel
      */
 
      protected $middlewarePriority = [
+        \Spatie\Permission\Middleware\RoleMiddleware::class,
+        \Spatie\Permission\Middleware\PermissionMiddleware::class,
+        \Spatie\Permission\Middleware\RoleOrPermissionMiddleware::class,
         \Illuminate\Foundation\Http\Middleware\HandlePrecognitiveRequests::class,
         \Illuminate\Cookie\Middleware\EncryptCookies::class,
         \Illuminate\Session\Middleware\StartSession::class,
@@ -25,9 +28,6 @@ class Kernel extends HttpKernel
         \Illuminate\Contracts\Session\Middleware\AuthenticatesSessions::class,
         \Illuminate\Routing\Middleware\SubstituteBindings::class,
         \Illuminate\Auth\Middleware\Authorize::class,
-        \Spatie\Permission\Middleware\RoleMiddleware::class,
-        \Spatie\Permission\Middleware\PermissionMiddleware::class,
-        \Spatie\Permission\Middleware\RoleOrPermissionMiddleware::class
     ];
 
     protected $middleware = [

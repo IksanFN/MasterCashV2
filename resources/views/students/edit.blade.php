@@ -91,13 +91,13 @@
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
-                        <div class="mb-3">
+                        {{-- <div class="mb-3">
                             <label for="" class="form-label">Password</label>
                             <input type="password" class="form-control" name="password" value="{{ $student->password }}">
                             @error('password')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
-                        </div>
+                        </div> --}}
                         <div class="mb-3">
                             <label for="" class="form-label">Address</label>
                             <textarea name="address" class="form-control">{{ $student->address }}</textarea>
