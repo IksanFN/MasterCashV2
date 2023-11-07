@@ -28,7 +28,7 @@ class UserStore extends FormRequest
             'email' => ['required', 'email', 'unique:users'],
             'password' => ['required', 'min:6'],
             'phone' => ['nullable', 'min:8', 'numeric'],
-            'roles[]' => ['required', 'not_in:defaul'],
+            'roles' => ['required', 'not_in:defaul'],
         ];
     }
 }

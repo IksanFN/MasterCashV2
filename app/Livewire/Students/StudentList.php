@@ -43,6 +43,7 @@ class StudentList extends Component
                                 })
                                 ->latest()
                                 ->paginate($this->limit);
+        // return dd($students);
         return view('livewire.students.student-list', compact('students', 'classrooms'));
     }
 }

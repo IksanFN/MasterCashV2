@@ -16,18 +16,12 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class UserController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        $users = User::query()->whereNot('is_student', true)->latest()->paginate();
+        $users = User::query()->where('is_student', false)->latest()->paginate();
         return view('users.index', compact('users'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         $classrooms = Classroom::all();
@@ -55,7 +49,7 @@ class UserController extends Controller
                 'email' => $request->email,
                 'password' => Hash::make($request->password),
                 'phone' => $request->phone,
-                'is_student' => false,
+                'is_student' => 0,
             ]);
             $user->assignRole($request->roles);
         } else {
@@ -64,7 +58,7 @@ class UserController extends Controller
                 'email' => $request->email,
                 'password' => Hash::make($request->password),
                 'phone' => $request->phone,
-                'is_student' => false,
+                'is_student' => 0,
             ]);
             $user->assignRole($request->roles);
         }
@@ -73,9 +67,6 @@ class UserController extends Controller
         return to_route('users.index');
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(User $user)
     {
         //

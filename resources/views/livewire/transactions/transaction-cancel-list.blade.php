@@ -38,6 +38,7 @@
                         <th>Bill</th>
                         <th>Status</th>
                         <th>Payment Date</th>
+                        <th>Cancel Date</th>
                         {{-- <th class="text-center">Aksi</th> --}}
                     </thead>
                     <tbody class="align-middle">
@@ -54,6 +55,7 @@
                                     <span class="badge bg-danger">{{ $transaction->payment_status }}</span>
                                 </td>
                                 <td>{{ $transaction->payment_date }}</td>
+                                <td>{{ $transaction->cancel_date }}</td>
                                 <td class="text-center">
                                     {{-- <a href="{{ route('transactions.invoice', $transaction->uuid) }}" class="btn btn-dark shadow-sm"><i class="bi bi-receipt"></i></a> --}}
                                     {{-- <a href="{{ route('transactions.edit', $bill->uuid) }}" class="btn btn-sm btn-warning text-white shadow-sm"><i class="bi bi-pencil-square"></i></a> --}}
