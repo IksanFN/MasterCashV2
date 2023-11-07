@@ -18,6 +18,13 @@ class UserList extends Component
 
     public $limit = 10;
 
+    public function updated($property): void
+    {
+        if ($property === 'query') {
+            $this->resetPage();
+        }
+    }
+
     public function render()
     {
         $users = User::query()->where('is_student', false)->where('is_active', true)
