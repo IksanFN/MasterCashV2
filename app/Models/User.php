@@ -29,7 +29,8 @@ class User extends Authenticatable
         'phone',
         'gender',
         'classroom_id',
-        'major_id'
+        'major_id',
+        'is_student'
     ];
 
     protected $hidden = [

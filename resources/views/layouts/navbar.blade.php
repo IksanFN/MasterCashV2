@@ -59,10 +59,12 @@
               Management
             </a>
             <ul class="dropdown-menu border-0 shadow-smooth p-3">
+              <li></li>
               <li><a wire:navigate class="dropdown-item" href="{{ route('users.index') }}">Users</a></li>
               <li><a wire:navigate class="dropdown-item" href="{{ route('roles.index') }}">Roles</a></li>
               <li><a wire:navigate class="dropdown-item" href="{{ route('permissions.index') }}">Permissions</a></li>
               <li><a wire:navigate class="dropdown-item" href="{{ route('classrooms.index') }}">Classrooms</a></li>
+              <li><a wire:navigate class="dropdown-item" href="{{ route('payment_accounts.index') }}">Payment Accounts</a></li>
             </ul>
           </li>
           

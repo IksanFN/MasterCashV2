@@ -3,6 +3,7 @@
 use App\Http\Controllers\BillController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\ClassroomController;
+use App\Http\Controllers\PaymentAccountController;
 use App\Http\Controllers\PaymentCashController;
 use App\Http\Controllers\PaymentTransferController;
 use App\Http\Controllers\PermissionController;
@@ -120,6 +121,17 @@ Route::middleware('auth')->group(function () {
             Route::put('/cancel/{transaction:uuid}', 'storeCancel')->name('store_cancel');
             // Route::put('/', 'paymentCash')->name('store');
             Route::get('/invoice/{uuid}', 'invoice')->name('invoice');
+        });
+    });
+
+    Route::prefix('payment-accounts')->name('payment_accounts.')->group(function() {
+        Route::controller(PaymentAccountController::class)->group(function() {
+            Route::get('/', 'index')->name('index');
+            Route::get('/create', 'create')->name('create');
+            Route::post('/create', 'store')->name('store');
+            Route::get('/edit/{payment_account:uuid}', 'edit')->name('edit');
+            Route::put('/edit/{payment_account:uuid}', 'update')->name('update');
+            Route::delete('/delete/{payment_account:uuid}', 'destroy')->name('destroy');
         });
     });
 
