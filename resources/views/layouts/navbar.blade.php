@@ -65,6 +65,7 @@
               <li><a wire:navigate class="dropdown-item" href="{{ route('permissions.index') }}">Permissions</a></li>
               <li><a wire:navigate class="dropdown-item" href="{{ route('classrooms.index') }}">Classrooms</a></li>
               <li><a wire:navigate class="dropdown-item" href="{{ route('payment_accounts.index') }}">Payment Accounts</a></li>
+              <li><a wire:navigate class="dropdown-item" href="{{ route('years.index') }}">Years</a></li>
             </ul>
           </li>
           

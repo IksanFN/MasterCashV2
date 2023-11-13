@@ -1,18 +1,19 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BillController;
+use App\Http\Controllers\RoleController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\YearController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\StudentController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\ClassroomController;
-use App\Http\Controllers\PaymentAccountController;
-use App\Http\Controllers\PaymentCashController;
-use App\Http\Controllers\PaymentTransferController;
 use App\Http\Controllers\PermissionController;
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\RoleController;
-use App\Http\Controllers\StudentController;
+use App\Http\Controllers\PaymentCashController;
 use App\Http\Controllers\TransactionController;
-use App\Http\Controllers\UserController;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PaymentAccountController;
+use App\Http\Controllers\PaymentTransferController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -132,6 +133,17 @@ Route::middleware('auth')->group(function () {
             Route::get('/edit/{payment_account:uuid}', 'edit')->name('edit');
             Route::put('/edit/{payment_account:uuid}', 'update')->name('update');
             Route::delete('/delete/{payment_account:uuid}', 'destroy')->name('destroy');
+        });
+    });
+
+    Route::prefix('years')->name('years.')->group(function() {
+        Route::controller(YearController::class)->group(function() {
+            Route::get('/', 'index')->name('index');
+            Route::get('/create', 'create')->name('create');
+            Route::post('/create', 'store')->name('store');
+            Route::get('/edit/{year}', 'edit')->name('edit');
+            Route::put('/edit/{year}', 'update')->name('update');
+            Route::delete('/delete/{year}', 'destroy')->name('destroy');
         });
     });
 
