@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Bills;
 
+use App\Exports\BillExport;
 use App\Models\Classroom;
 use App\Models\Transaction;
 use Livewire\Attributes\Url;
@@ -44,5 +45,10 @@ class BillList extends Component
                                 ->latest()
                                 ->paginate($this->limit);
         return view('livewire.bills.bill-list', compact('classrooms', 'bills'));
+    }
+
+    public function export()
+    {
+        return (new BillExport)->forSearch($this->query)->forClassroom($this->classroom)->download('List-Bills.xlsx');
     }
 }
