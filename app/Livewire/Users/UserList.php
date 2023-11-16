@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Users;
 
+use App\Exports\UserExport;
 use App\Models\User;
 use Livewire\Attributes\Url;
 use Livewire\Component;
@@ -34,5 +35,10 @@ class UserList extends Component
                         })
                         ->latest()->paginate();
         return view('livewire.users.user-list', compact('users'));
+    }
+
+    public function export()
+    {
+        return (new UserExport)->forSearch($this->query)->download('List-Users.xlsx');
     }
 }

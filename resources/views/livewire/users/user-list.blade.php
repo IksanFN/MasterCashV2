@@ -8,6 +8,7 @@
                 </div>
                 <div class="col-md-2 ms-auto text-end">
                     <a href="{{ route('users.create') }}" class="btn btn-secondary shadow-sm" ><i class="bi bi-person-plus-fill"></i></a>
+                    <a href="" wire:click.prevent='export' class="btn btn-success shadow-sm"><i class="bi bi-file-earmark-fill me-1"></i></a>
                 </div>
                 <div class="col-md-2">
                     <select wire:model.live='limit' class="form-select">
