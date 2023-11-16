@@ -12,6 +12,8 @@ use App\Http\Controllers\ClassroomController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\PaymentCashController;
 use App\Http\Controllers\TransactionController;
+use App\Http\Controllers\AnnouncementController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PaymentAccountController;
 use App\Http\Controllers\PaymentTransferController;
 
@@ -22,9 +24,7 @@ Route::get('/', function () {
 
 Route::middleware('auth')->group(function () {
 
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->middleware(['auth', 'verified'])->name('dashboard');    
+    Route::get('/dashboard', DashboardController::class)->name('dashboard');
 
     Route::prefix('users')->name('users.')->group(function() {
         Route::controller(UserController::class)->group(function() {
@@ -144,6 +144,17 @@ Route::middleware('auth')->group(function () {
             Route::get('/edit/{year}', 'edit')->name('edit');
             Route::put('/edit/{year}', 'update')->name('update');
             Route::delete('/delete/{year}', 'destroy')->name('destroy');
+        });
+    });
+
+    Route::prefix('announcements')->name('announcements.')->group(function() {
+        Route::controller(AnnouncementController::class)->group(function() {
+            Route::get('/', 'index')->name('index');
+            Route::get('/create', 'create')->name('create');
+            Route::post('/create', 'store')->name('store');
+            Route::get('/edit/{announcement}', 'edit')->name('edit');
+            Route::put('/edit/{announcement}', 'update')->name('update');
+            Route::delete('/delete/{announcement}', 'destroy')->name('destroy');
         });
     });
 

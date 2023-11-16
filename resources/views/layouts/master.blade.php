@@ -28,6 +28,7 @@
     </head>
     <body class="font-sans antialiased bg-light">
         @include('sweetalert::alert')
+
         @include('layouts.navbar')
 
         <main class="container my-5">
