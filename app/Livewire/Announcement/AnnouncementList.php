@@ -18,7 +18,6 @@ class AnnouncementList extends Component
 
     public function render()
     {
-    
         $announcements = Announcement::query()
                             ->when($this->query, function($query) {
                                 $query->where('title', 'like', '%'.$this->query.'%');

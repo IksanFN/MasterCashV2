@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Students;
 
+use App\Exports\StudentExport;
 use App\Models\Classroom;
 use App\Models\User;
 use Livewire\Attributes\Url;
@@ -43,7 +44,12 @@ class StudentList extends Component
                                 })
                                 ->latest()
                                 ->paginate($this->limit);
-        // return dd($students);
         return view('livewire.students.student-list', compact('students', 'classrooms'));
+    }
+
+    // Export Excel
+    public function export()
+    {
+        return (new StudentExport)->forSearch($this->query)->forClassroom($this->classroom)->download('List-Student.xlsx');
     }
 }
