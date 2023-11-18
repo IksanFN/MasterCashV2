@@ -53,7 +53,7 @@
                         </div>
                         <div class="col-6">
                             <h6>Total Student</h6>
-                            <span>10.000</span>
+                            <span>{{ $student }}</span>
                         </div>
                     </div>
                 </div>
@@ -68,7 +68,7 @@
                         </div>
                         <div class="col-6">
                             <h6>Total Trx</h6>
-                            <span>10.000</span>
+                            <span>{{ $totalTransaction }}</span>
                         </div>
                     </div>
                 </div>

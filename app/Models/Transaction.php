@@ -73,4 +73,9 @@ class Transaction extends Model
         return $this->where('is_cancel', true)->where('payment_status', 'Cancel')->count();
 
     }
+    
+    public function getTotalTransaction()
+    {
+        return $this->whereNot('is_paid', false)->whereNot('payment_status', 'Unpaid')->count();
+    }
 }
