@@ -47,6 +47,7 @@ class TransactionController extends Controller
     public function storeConfirm(Transaction $transaction)
     {
         $transaction->update([
+            'transaction_code' => 'TRX-'.substr($transaction->user->nisn, -3).Str::upper(Str::random(7)),
             'payment_status' => 'Paid',
             'is_verified' => true,
             'payment_verified' => true,

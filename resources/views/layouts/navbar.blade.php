@@ -36,24 +36,11 @@
               <li><a wire:navigate class="dropdown-item" href="{{ route('transactions.cancel') }}">Cancel</a></li>
             </ul>
           </li>
-          {{-- <li class="nav-item">
-            <x-navbar-link :href="route('bills.index')" :active="request()->routeIs('bills.*')">
-            Bills
+          <li class="nav-item">
+            <x-navbar-link :href="route('reports.index')" :active="request()->routeIs('reports.*')">
+            Reports
             </x-navbar-link>
           </li>
-          <li class="nav-item">
-            <x-navbar-link :href="route('transactions.index')" :active="request()->routeIs('transactions.*')">
-              Transactions
-            </x-navbar-link>
-          </li> --}}
-          {{-- <li class="nav-item">
-            <a class="nav-link" href="">Pengeluaran</a>
-          </li>
-          <li class="nav-item">
-            <x-navbar-link :href="route('users.index')" :active="request()->routeIs('users.*')">
-              Pengguna
-            </x-navbar-link>
-          </li> --}}
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle " href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               Management

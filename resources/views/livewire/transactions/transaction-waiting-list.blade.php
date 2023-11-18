@@ -31,7 +31,7 @@
                 <table class="table mb-3">
                     <thead>
                         <th>No</th>
-                        <th>Transaction Code</th>
+                        <th>Bill Code</th>
                         <th>Name</th>
                         <th>Classroom</th>
                         <th>Amount</th>
@@ -45,7 +45,7 @@
                             <tr wire:key='{{ $transaction->id }}'>
                                 <td>{{ $loop->iteration }}</td>
                                 {{-- <td>{{ $loop->index + $transactions->firstItem() }}</td> --}}
-                                <td>{{ $transaction->transaction_code }}</td>
+                                <td>{{ $transaction->bill_code }}</td>
                                 <td>{{ $transaction->user->name }}</td>
                                 <td>{{ $transaction->user->classroom->title }}</td>
                                 <td>{{ number_format($transaction->bill) }}</td>

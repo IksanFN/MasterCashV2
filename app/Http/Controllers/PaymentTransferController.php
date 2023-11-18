@@ -30,7 +30,7 @@ class PaymentTransferController extends Controller
             $receipt->storeAs('public/receipt', $receipt->hashName());
 
             $payment->update([
-                'transaction_code' => 'TRX-'.substr($payment->user->nisn, -3).Str::upper(Str::random(7)),
+                // 'transaction_code' => 'TRX-'.substr($payment->user->nisn, -3).Str::upper(Str::random(7)),
                 'is_paid' => true,
                 'payment_receipt' => $receipt->hashName(),
                 'payment_status' => 'Waiting',
@@ -42,7 +42,7 @@ class PaymentTransferController extends Controller
 
         } else {
             $payment->update([
-                'transaction_code' => 'TRX-'.substr($payment->user->nisn, -3).Str::upper(Str::random(7)),
+                // 'transaction_code' => 'TRX-'.substr($payment->user->nisn, -3).Str::upper(Str::random(7)),
                 'is_paid' => true,
                 'payment_status' => 'Waiting',
                 'is_verifired' => true,

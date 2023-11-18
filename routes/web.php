@@ -16,6 +16,7 @@ use App\Http\Controllers\AnnouncementController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PaymentAccountController;
 use App\Http\Controllers\PaymentTransferController;
+use App\Http\Controllers\ReportController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -156,6 +157,10 @@ Route::middleware('auth')->group(function () {
             Route::put('/edit/{announcement}', 'update')->name('update');
             Route::delete('/delete/{announcement}', 'destroy')->name('destroy');
         });
+    });
+    
+    Route::prefix('reports')->name('reports.')->group(function() {
+        Route::get('/', ReportController::class)->name('index');
     });
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
