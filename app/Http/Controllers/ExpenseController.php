@@ -21,6 +21,11 @@ class ExpenseController extends Controller
         return view('expenses.create');
     }
 
+    public function detail(Expense $expense)
+    {
+        return view('expenses.detail', compact('expense'));
+    }
+
     public function store(Request $request)
     {
         $this->validate($request, [

@@ -32,26 +32,26 @@
                             <td>{{$year->title}}</td>
                             <td class="text-center">
                                 <a href="{{ route('years.edit', $year->id) }}" class="btn btn-dark"><i class="bi bi-pencil-square"></i></a>
-                                <button type="button" class="btn btn-dark shadow-sm" data-bs-toggle="modal" data-bs-target="#hapusyear">
+                                <button type="button" class="btn btn-dark shadow-sm" data-bs-toggle="modal" data-bs-target="#deleteYear">
                                     <i class="bi bi-trash3-fill"></i>
                                 </button>
                                 <!-- Modal -->
-                                <div class="modal fade" id="hapusyear" tabindex="-1" aria-labelledby="hapusyearLabel" aria-hidden="true">
+                                <div class="modal fade" id="deleteYear" tabindex="-1" aria-labelledby="deleteYearLabel" aria-hidden="true">
                                     <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                        <h1 class="modal-title fs-5" id="hapusyearLabel">Hapus year</h1>
+                                        <h1 class="modal-title fs-5" id="deleteYearLabel">Delete Year</h1>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
-                                            <p>Apakah anda yakin akan menghapus nya?</p>
+                                            <p>Are you sure you want to delete it?</p>
                                             <form action="{{ route('years.destroy', $year->id) }}" method="post">
                                             @csrf
                                             @method('DELETE')
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                                            <button type="submit" class="btn btn-primary">Hapus</button>
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                            <button type="submit" class="btn btn-primary">Delete</button>
                                         </form>
                                         </div>
                                     </div>

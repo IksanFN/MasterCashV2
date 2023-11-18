@@ -170,6 +170,7 @@ Route::middleware('auth')->group(function () {
         Route::controller(ExpenseController::class)->group(function() {
             Route::get('/', 'index')->name('index');
             Route::get('/create', 'create')->name('create');
+            Route::get('/detail/{expense}', 'detail')->name('detail');
             Route::post('/create', 'store')->name('store');
             Route::get('/edit/{expense}', 'edit')->name('edit');
             Route::put('/edit/{expense}', 'update')->name('update');
