@@ -45,5 +45,32 @@ class Transaction extends Model
     {
         return 'uuid';
         
-    }    
+    }
+
+    public function getTotalIncome()
+    {
+        return $this->where('payment_status', 'Paid')->sum('bill');
+    }
+
+    public function getBill()
+    {
+        return $this->where('is_paid', false)->where('payment_status', 'Waiting')->count();
+    }
+
+    public function getTransactionConfirm()
+    {
+        return $this->where('is_paid', true)->where('payment_status', 'Waiting')->count();
+ 
+    }
+
+    public function getTransactionPaid()
+    {
+        return $this->where('is_paid', true)->where('payment_status', 'Paid')->count();
+    }
+
+    public function getTransactionCancel()
+    {
+        return $this->where('is_cancel', true)->where('payment_status', 'Cancel')->count();
+
+    }
 }
