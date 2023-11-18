@@ -5,18 +5,19 @@ use App\Http\Controllers\BillController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\YearController;
+use App\Http\Controllers\ReportController;
+use App\Http\Controllers\ExpenseController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\ClassroomController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\PaymentCashController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\AnnouncementController;
-use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PaymentAccountController;
 use App\Http\Controllers\PaymentTransferController;
-use App\Http\Controllers\ReportController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -161,6 +162,17 @@ Route::middleware('auth')->group(function () {
     
     Route::prefix('reports')->name('reports.')->group(function() {
         Route::get('/', ReportController::class)->name('index');
+    });
+
+    Route::prefix('expenses')->name('expenses.')->group(function() {
+        Route::controller(ExpenseController::class)->group(function() {
+            Route::get('/', 'index')->name('index');
+            Route::get('/create', 'create')->name('create');
+            Route::post('/create', 'store')->name('store');
+            Route::get('/edit/{expense}', 'edit')->name('edit');
+            Route::put('/edit/{expense}', 'update')->name('update');
+            Route::delete('/delete/{expense}', 'destroy')->name('destroy');
+        });
     });
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

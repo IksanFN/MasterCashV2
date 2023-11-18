@@ -23,7 +23,7 @@
                         </div>
                         <div class="col-6">
                             <h6>Total Income</h6>
-                            <span>{{ number_format($totalIncome) }}</span>
+                            <span>{{ number_format($totalIncome - $totalExpense) }}</span>
                         </div>
                     </div>
                 </div>
@@ -38,7 +38,7 @@
                         </div>
                         <div class="col-6">
                             <h6>Total Expense</h6>
-                            <span>10.000</span>
+                            <span>{{ number_format($totalExpense) }}</span>
                         </div>
                     </div>
                 </div>

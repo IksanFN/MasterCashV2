@@ -21,11 +21,6 @@
             Bills
             </x-navbar-link>
           </li>
-          {{-- <li class="nav-item">
-            <x-navbar-link :href="route('transactions.index')" :active="request()->routeIs('transactions.*')">
-            Transactions
-            </x-navbar-link>
-          </li> --}}
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle " href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               Transactions
@@ -35,6 +30,11 @@
               <li><a wire:navigate class="dropdown-item" href="{{ route('transactions.waiting') }}">Waiting Confirm</a></li>
               <li><a wire:navigate class="dropdown-item" href="{{ route('transactions.cancel') }}">Cancel</a></li>
             </ul>
+          </li>
+          <li class="nav-item">
+            <x-navbar-link :href="route('expenses.index')" :active="request()->routeIs('expenses.*')">
+            Expenses
+            </x-navbar-link>
           </li>
           <li class="nav-item">
             <x-navbar-link :href="route('reports.index')" :active="request()->routeIs('reports.*')">

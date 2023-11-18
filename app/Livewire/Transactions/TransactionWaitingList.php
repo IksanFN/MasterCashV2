@@ -19,6 +19,13 @@ class TransactionWaitingList extends Component
 
     public $limit = 10;
 
+    public function updated($property): void
+    {
+        if ($property === 'query') {
+            $this->resetPage();
+        }
+    }
+
     public function render()
     {
         $classrooms = Classroom::all();
