@@ -5,11 +5,8 @@
                 Please do a filter to export data
             </div>
             
-            <div class="row pt-3">
-                {{-- <div class="col-md-3">
-                    <input type="text" wire:model.live.debounce.500ms='query' placeholder="Search" class="form-control">
-                </div> --}}
-                <div class="col-md-2">
+            <div class="row pt-3 gap-2 mb-3 justify-content-center">
+                <div class="col-md-3">
                     <label class="form-label">Classroom</label>
                     <select wire:model.live='classroom' class="form-select">
                         <option value="" selected>All Class</option>
@@ -18,7 +15,7 @@
                         @endforeach
                     </select>
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-3">
                     <label class="form-label">Status Transaction</label>
                     <select wire:model.live='status' id="" class="form-select">
                         <option value="">All</option>
@@ -28,7 +25,7 @@
                         <option value="Waiting">Confirm</option>
                     </select>
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-3">
                     <label class="form-label">Year</label>
                     <select wire:model.live='year' class="form-select">
                         <option value="">All Year</option>
@@ -37,7 +34,9 @@
                         @endforeach
                     </select>
                 </div>
-                <div class="col-md-2">
+            </div>
+            <div class="row gap-2 justify-content-center">
+                <div class="col-md-3">
                     <label class="form-label">Month</label>
                     <select wire:model.live='month' class="form-select">
                         <option value="">All Month</option>
@@ -46,27 +45,27 @@
                         @endforeach
                     </select>
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-3">
                     <label class="form-label">Week</label>
-                    <select wire:model.live='week' class="form-control">
+                    <select wire:model.live='week' class="form-select">
                         <option value="">All Week</option>
                         @foreach ($weeks as $week)
                             <option value="{{ $week->id }}">{{ $week->title }}</option>
                         @endforeach
                     </select>
                 </div>
-                {{-- <div class="col-md-2">
-                    <label class="form-label">Start Date</label>
-                    <input type="datetime-local" wire:model='startDate' class="form-control">
+                <div class="col-md-3">
+                    <label class="form-label">Payment Method</label>
+                    <select wire:model.live='week' class="form-select">
+                        <option value="">All Week</option>
+                        @foreach ($paymentAccount as $account)
+                            <option value="{{ $account->id }}">{{ $account->account_type }}</option>
+                        @endforeach
+                    </select>
                 </div>
-                <div class="col-md-2">
-                    <label class="form-label">End Date</label>
-                    <input type="date" wire:model='endtDate' class="form-control">
-                </div> --}}
-                <div class="col-md-2 text-center">
-                    <label class="form-label d-block">Export</label>
-                    <button wire:click='export' class="btn btn-dark">Export Report</button>
-                </div>
+            </div>
+            <div class="text-center mt-3">
+                <button wire:click='export' class="btn btn-dark">Export Report</button>
             </div>
         </div>
     </div>

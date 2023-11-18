@@ -1,7 +1,7 @@
 <div>
     <div class="card border-0 p-2">
         <div class="card-body">
-            <div class="row">
+            <div class="row gap-2">
                 <div class="col-md-3">
                     <input type="text" wire:model.live.debounce.500ms='query' placeholder="Search" class="form-control">
                 </div>
@@ -44,7 +44,6 @@
                         @forelse ($transactions as $transaction)
                             <tr wire:key='{{ $transaction->id }}'>
                                 <td>{{ $loop->iteration }}</td>
-                                {{-- <td>{{ $loop->index + $transactions->firstItem() }}</td> --}}
                                 <td>{{ $transaction->transaction_code }}</td>
                                 <td>{{ $transaction->user->name }}</td>
                                 <td>{{ $transaction->user->classroom->title }}</td>
@@ -56,7 +55,6 @@
                                 <td>{{ $transaction->payment_date }}</td>
                                 <td class="text-center">
                                     <a href="{{ route('transactions.invoice', $transaction->uuid) }}" class="btn btn-dark shadow-sm"><i class="bi bi-receipt"></i></a>
-                                    {{-- <a href="{{ route('transactions.edit', $bill->uuid) }}" class="btn btn-sm btn-warning text-white shadow-sm"><i class="bi bi-pencil-square"></i></a> --}}
                                     <button type="button" class="btn btn-danger shadow-sm" data-bs-toggle="modal" data-bs-target="#cancelTransaction">
                                         <i class="bi bi-x-circle"></i>
                                     </button>
@@ -69,13 +67,13 @@
                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                             </div>
                                             <div class="modal-body">
-                                                <p>Are you sure you will cancel this transaction??</p>
+                                                <p>Are you sure you will cancel this transaction?</p>
                                                 <form action="{{ route('transactions.store_cancel', $transaction->uuid) }}" method="post">
                                                 @csrf
                                                 @method('PUT')
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                                 <button type="submit" class="btn btn-danger">Cancel Transaction</button>
                                             </form>
                                             </div>

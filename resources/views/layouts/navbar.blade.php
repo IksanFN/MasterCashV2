@@ -6,21 +6,25 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarText">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0 gap-2">
+          {{-- Dashboard --}}
           <li class="nav-item">
             <x-navbar-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
               Dashboard
             </x-navbar-link>
           </li>
+          {{-- Students --}}
           <li class="nav-item">
             <x-navbar-link :href="route('students.index')" :active="request()->routeIs('students.*')">
               Students
             </x-navbar-link>
           </li>
+          {{-- Bills --}}
           <li class="nav-item">
             <x-navbar-link :href="route('bills.index')" :active="request()->routeIs('bills.*')">
             Bills
             </x-navbar-link>
           </li>
+          {{-- Transaction --}}
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle " href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               Transactions
@@ -31,16 +35,19 @@
               <li><a wire:navigate class="dropdown-item" href="{{ route('transactions.cancel') }}">Cancel</a></li>
             </ul>
           </li>
+          {{-- Expense --}}
           <li class="nav-item">
             <x-navbar-link :href="route('expenses.index')" :active="request()->routeIs('expenses.*')">
             Expenses
             </x-navbar-link>
           </li>
+          {{-- Reports --}}
           <li class="nav-item">
             <x-navbar-link :href="route('reports.index')" :active="request()->routeIs('reports.*')">
             Reports
             </x-navbar-link>
           </li>
+          {{-- Management --}}
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle " href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               Management
@@ -48,15 +55,14 @@
             <ul class="dropdown-menu border-0 shadow-smooth p-3">
               <li></li>
               <li><a wire:navigate class="dropdown-item" href="{{ route('users.index') }}">Users</a></li>
+              <li><a wire:navigate class="dropdown-item" href="{{ route('announcements.index') }}">Announcements</a></li>
+              <li><a wire:navigate class="dropdown-item" href="{{ route('payment_accounts.index') }}">Payment Accounts</a></li>
+              <li><a wire:navigate class="dropdown-item" href="{{ route('classrooms.index') }}">Classrooms</a></li>
+              <li><a wire:navigate class="dropdown-item" href="{{ route('years.index') }}">Years</a></li>
               <li><a wire:navigate class="dropdown-item" href="{{ route('roles.index') }}">Roles</a></li>
               <li><a wire:navigate class="dropdown-item" href="{{ route('permissions.index') }}">Permissions</a></li>
-              <li><a wire:navigate class="dropdown-item" href="{{ route('classrooms.index') }}">Classrooms</a></li>
-              <li><a wire:navigate class="dropdown-item" href="{{ route('payment_accounts.index') }}">Payment Accounts</a></li>
-              <li><a wire:navigate class="dropdown-item" href="{{ route('years.index') }}">Years</a></li>
-              <li><a wire:navigate class="dropdown-item" href="{{ route('announcements.index') }}">Announcements</a></li>
             </ul>
           </li>
-          
         </ul>
         {{-- @auth --}}
         <div class="flex-shrink-0 dropdown">

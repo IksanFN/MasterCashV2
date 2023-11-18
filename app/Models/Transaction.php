@@ -41,6 +41,11 @@ class Transaction extends Model
         return $this->belongsTo(Week::class);
     }
 
+    public function paymentAccount()
+    {
+        return $this->belongsTo(PaymentAccount::class);
+    }
+
     public function getRouteKeyName()
     {
         return 'uuid';

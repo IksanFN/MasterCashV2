@@ -9,7 +9,6 @@ use App\Http\Controllers\ReportController;
 use App\Http\Controllers\ExpenseController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StudentController;
-use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\ClassroomController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PermissionController;
@@ -28,6 +27,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/dashboard', DashboardController::class)->name('dashboard');
 
+    // Route users
     Route::prefix('users')->name('users.')->group(function() {
         Route::controller(UserController::class)->group(function() {
             Route::get('/', 'index')->name('index');
@@ -39,6 +39,7 @@ Route::middleware('auth')->group(function () {
         });
     });
 
+    // Route Students
     Route::prefix('students')->name('students.')->group(function() {
         Route::controller(StudentController::class)->group(function() {
             Route::get('/', 'index')->name('index');
@@ -49,18 +50,8 @@ Route::middleware('auth')->group(function () {
             Route::delete('/delete/{user:uuid}', 'destroy')->name('destroy');
         });
     });
-
-    Route::prefix('roles')->name('roles.')->group(function() {
-        Route::controller(RoleController::class)->group(function() {
-            Route::get('/', 'index')->name('index');
-            Route::get('/create', 'create')->name('create');
-            Route::post('/create', 'store')->name('store');
-            Route::get('/edit/{role:uuid}', 'edit')->name('edit');
-            Route::put('/edit/{role:uuid}', 'update')->name('update');
-            Route::delete('/delete/{role:uuid}', 'destroy')->name('destroy');
-        });
-    });
     
+    // Route Classrooms
     Route::prefix('classrooms')->name('classrooms.')->group(function() {
         Route::controller(ClassroomController::class)->group(function() {
             Route::get('/', 'index')->name('index');
@@ -72,6 +63,7 @@ Route::middleware('auth')->group(function () {
         });
     });
 
+    // Route Roles
     Route::prefix('roles')->name('roles.')->group(function() {
         Route::controller(RoleController::class)->group(function() {
             Route::get('/', 'index')->name('index');
@@ -83,6 +75,7 @@ Route::middleware('auth')->group(function () {
         });
     });
 
+    // Route Permissions
     Route::prefix('permissions')->name('permissions.')->group(function() {
         Route::controller(PermissionController::class)->group(function() {
             Route::get('/', 'index')->name('index');
@@ -94,6 +87,7 @@ Route::middleware('auth')->group(function () {
         });
     });
 
+    // Route Bills
     Route::prefix('bills')->name('bills.')->group(function() {
         Route::controller(BillController::class)->group(function() {
             Route::get('/', 'index')->name('index');
@@ -102,6 +96,7 @@ Route::middleware('auth')->group(function () {
         });
     });
 
+    // Route Checkout Cash
     Route::prefix('checkouts-cash')->name('checkouts_cash.')->group(function() {
         Route::controller(PaymentCashController::class)->group(function() {
             Route::get('/checkout/{uuid}', 'checkoutCash')->name('index');
@@ -111,11 +106,13 @@ Route::middleware('auth')->group(function () {
 
     Route::prefix('transactions')->name('transactions.')->group(function() {
 
+        // Route Payment Transfer
         Route::controller(PaymentTransferController::class)->name('payment_transfer.')->group(function() {
             Route::get('/checkout-transfer/{uuid}', 'checkoutTransfer')->name('checkout');
             Route::put('/checkout-transfer/{uuid}', 'paymentTransfer')->name('store_checkout');
         });
 
+        // Route Transaction
         Route::controller(TransactionController::class)->group(function() {
             Route::get('/paid', 'paid')->name('paid');
             Route::get('/waiting', 'waitingConfirm')->name('waiting');
@@ -127,6 +124,7 @@ Route::middleware('auth')->group(function () {
         });
     });
 
+    // Route Payment Accounts
     Route::prefix('payment-accounts')->name('payment_accounts.')->group(function() {
         Route::controller(PaymentAccountController::class)->group(function() {
             Route::get('/', 'index')->name('index');
@@ -138,6 +136,7 @@ Route::middleware('auth')->group(function () {
         });
     });
 
+    // Route Years
     Route::prefix('years')->name('years.')->group(function() {
         Route::controller(YearController::class)->group(function() {
             Route::get('/', 'index')->name('index');
@@ -149,6 +148,7 @@ Route::middleware('auth')->group(function () {
         });
     });
 
+    // Route Announcements
     Route::prefix('announcements')->name('announcements.')->group(function() {
         Route::controller(AnnouncementController::class)->group(function() {
             Route::get('/', 'index')->name('index');
@@ -160,10 +160,12 @@ Route::middleware('auth')->group(function () {
         });
     });
     
+    // Route Reports
     Route::prefix('reports')->name('reports.')->group(function() {
         Route::get('/', ReportController::class)->name('index');
     });
 
+    // Route Expense
     Route::prefix('expenses')->name('expenses.')->group(function() {
         Route::controller(ExpenseController::class)->group(function() {
             Route::get('/', 'index')->name('index');

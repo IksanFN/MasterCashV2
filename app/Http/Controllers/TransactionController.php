@@ -60,7 +60,7 @@ class TransactionController extends Controller
 
     public function invoice($uuid)
     {
-        $invoice = Transaction::query()->with(['user', 'year', 'month', 'week'])->where('uuid', $uuid)->first();
+        $invoice = Transaction::query()->with(['user', 'year', 'month', 'week', 'paymentAccount'])->where('uuid', $uuid)->first();
         return view('transactions.invoice', compact('invoice'));
     }
 }

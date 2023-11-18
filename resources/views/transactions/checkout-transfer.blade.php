@@ -84,7 +84,7 @@
                                 <textarea name="payment_description" class="form-control"></textarea>
                             </div>
                             <div class="mt-3 text-center">
-                                <button type="submit" class="btn btn-primary shadow px-4">Pay Now</button>
+                                <button type="submit" class="btn btn-dark shadow px-4">Pay Now</button>
                             </div>
                         </div>
                     </form>

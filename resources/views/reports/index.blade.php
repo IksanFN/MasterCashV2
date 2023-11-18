@@ -1,7 +1,7 @@
 <x-master-layout title="Reports">
 
     @section('header')
-        <h4 class="text-center">Reports</h4>
+        <h4 class="text-center">Reports Transaction</h4>
     @endsection
 
     <div class="row justify-content-center">

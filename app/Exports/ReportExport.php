@@ -23,6 +23,7 @@ class ReportExport implements FromQuery, WithMapping, WithHeadings, ShouldAutoSi
     public $week;
     public $startDate;
     public $endDate;
+    public $paymentMethod;
 
     public function headings(): array
     {
@@ -35,7 +36,8 @@ class ReportExport implements FromQuery, WithMapping, WithHeadings, ShouldAutoSi
             'Billing',
             'Amount',
             'Status',
-            'Payment Date'
+            'Payment Date',
+            'Payment Method',
         ];
     }
 
@@ -82,6 +84,13 @@ class ReportExport implements FromQuery, WithMapping, WithHeadings, ShouldAutoSi
         return $this;
     }
 
+    public function forPaymentMethod($paymentMethod)
+    {
+        $this->paymentMethod = $paymentMethod;
+
+        return $this;
+    }
+
     public function query()
     {
         return Transaction::query()
@@ -102,6 +111,11 @@ class ReportExport implements FromQuery, WithMapping, WithHeadings, ShouldAutoSi
                             ->when($this->week, function($week) {
                                 $week->where('week_id', '=', $this->week);
                             })
+                            ->when($this->paymentMethod, function($paymentMethod) {
+                                $paymentMethod->whereHas('paymentAccount', function($paymentMethod) {
+                                    $paymentMethod->where('account_type', '=', $this->paymentMethod);
+                                });
+                            })
                             ->when($this->startDate, function($startDate) {
                                 $startDate->where('payment_date', '>=', $this->startDate)
                                             ->where('payment_date', '<=', $this->endDate);
@@ -120,7 +134,8 @@ class ReportExport implements FromQuery, WithMapping, WithHeadings, ShouldAutoSi
             $reports->week->title.', '.$reports->month->title.' '.$reports->year->title,
             $reports->bill,
             $reports->payment_status,
-            $reports->payment_date
+            $reports->payment_date,
+            $reports->paymentAccount->account_type,
         ];
     }
 

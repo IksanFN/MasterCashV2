@@ -14,7 +14,7 @@
                     <div class="row">
                         <div class="col-md-6">
                             <h4><strong>{{ $invoice->transaction_code }}</strong></h4>
-                            <p class="mb-0">Tagihan : <strong>{{ $invoice->week->title }}, {{ $invoice->month->title }} {{ $invoice->year->title }}</strong></p>
+                            <p class="mb-0">Bill for : <strong>{{ $invoice->week->title }}, {{ $invoice->month->title }} {{ $invoice->year->title }}</strong></p>
                         </div>
                         <div class="col-md-6 text-end">
                             <h4 class="fw-bold text-primary">SanCash</h4>
@@ -34,19 +34,19 @@
                     </div>
                     <div class="table-responsive">
                         <table class="table">
-                            <thead>
+                            {{-- <thead>
                                 <tr class="bg-light">
                                     <th>Nama</th>
                                     <th style="text-align: right;">Nilai</th>
                                 </tr>
-                            </thead>
+                            </thead> --}}
                             <tbody>
                                 <tr>
-                                    <td>Nama Siswa</td>
+                                    <td>Student Name</td>
                                     <td style="text-align: right;">{{ $invoice->user->name }}</td>
                                 </tr>
                                 <tr>
-                                    <td>Kelas</td>
+                                    <td>Classroom</td>
                                     <td style="text-align: right;">{{ $invoice->user->classroom->title }}</td>
                                 </tr>
                                 <tr>
@@ -54,11 +54,15 @@
                                     <td style="text-align: right;">{{ $invoice->payment_status }}</td>
                                 </tr>
                                 <tr>
-                                    <td>Tanggal Bayar</td>
+                                    <td>Payment Date</td>
                                     <td style="text-align: right;">{{ $invoice->payment_date }}</td>
                                 </tr>
                                 <tr>
-                                    <td>Tagihan</td>
+                                    <td>Payment Method</td>
+                                    <td style="text-align: right;">{{ $invoice->paymentAccount->account_title }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Bill</td>
                                     <td style="text-align: right;">IDR {{ number_format($invoice->bill) }}</td>
                                 </tr>
                             </tbody>

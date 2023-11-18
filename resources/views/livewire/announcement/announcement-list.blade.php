@@ -1,7 +1,7 @@
 <div class="card border-0 shadow-smooth p-2">
     <div class="card-body">
 
-        <div class="row mb-5">
+        <div class="row mb-5 gap-2">
             <div class="col-md-4">
                 <input type="text" wire:model.live.debounce.500ms='query' placeholder="Search" class="form-control">
             </div>

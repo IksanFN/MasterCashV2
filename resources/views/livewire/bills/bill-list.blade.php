@@ -1,7 +1,7 @@
 <div>
     <div class="card border-0 p-2">
         <div class="card-body">
-            <div class="row">
+            <div class="row gap-2">
                 <div class="col-md-3">
                     <input type="text" wire:model.live.debounce.1000ms='query' placeholder="Search" class="form-control">
                 </div>
@@ -13,14 +13,6 @@
                         @endforeach
                     </select>
                 </div>
-                {{-- <div class="col-md-2">
-                    <select wire:model.live='classroom' id="" class="form-select">
-                        <option value="" selected>All Class</option>
-                        @foreach ($classrooms as $classroom)
-                            <option value="{{ $classroom->id }}">{{ $classroom->title }}</option>
-                        @endforeach
-                    </select>
-                </div> --}}
                 <div class="col-md-2 ms-auto text-end">
                     <a href="{{ route('bills.create_by_classroom') }}" class="btn btn-dark shadow-sm" ><i class="bi bi-plus-circle"></i></a>
                     <a href="" wire:click.prevent='export' class="btn btn-dark shadow-sm"><i class="bi bi-file-earmark-fill me-1"></i></a>
@@ -72,8 +64,6 @@
                                     @endif
                                 </td>
                                 <td class="text-center">
-                                    {{-- <a href="{{ route('checkouts_cash.index', $bill->uuid) }}" class="btn btn-dark shadow-sm"><i class="bi bi-credit-card me-1"></i></a> --}}
-                                    {{-- <a href="{{ route('bills.edit', $bill->uuid) }}" class="btn btn-sm btn-warning text-white shadow-sm"><i class="bi bi-pencil-square"></i></a> --}}
                                     <button type="button" class="btn btn-dark shadow-sm" data-bs-toggle="modal" data-bs-target="#Payment">
                                         <i class="bi bi-credit-card"></i>
                                     </button>
@@ -89,13 +79,9 @@
                                                 <p>Please choose one method</p>
                                                 <a href="{{ route('checkouts_cash.index', $bill->uuid) }}" class="btn btn-primary shadow-smooth">Checkout Cash</a>
                                                 <a href="{{ route('transactions.payment_transfer.checkout', $bill->uuid) }}" class="btn btn-secondary shadow-smooth">Checkout Transfer</a>
-                                                {{-- <form action="" method="post">
-                                                @csrf
-                                                @method('PUT') --}}
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal">Tutup</button>
-                                                {{-- <button type="submit" class="btn btn-primary">Hapus</button> --}}
                                             </form>
                                             </div>
                                         </div>

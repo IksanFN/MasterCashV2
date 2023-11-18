@@ -1,7 +1,7 @@
 <div>
     <div class="card border-0 p-2">
         <div class="card-body">
-            <div class="row">
+            <div class="row gap-2">
                 <div class="col-md-3">
                     <input type="text" wire:model.live.debounce.500ms='query' placeholder="Search" class="form-control">
                 </div>
@@ -73,15 +73,13 @@
                                                 @method('PUT')
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                                 <button type="submit" class="btn btn-success">Confirm Transaction</button>
                                             </form>
                                             </div>
                                         </div>
                                         </div>
                                     </div>
-                                    {{-- <a href="{{ route('transactions.store_confirm', $transaction->uuid) }}" class="btn btn-dark shadow-sm"><i class="bi bi-receipt"></i></a> --}}
-                                    {{-- <a href="{{ route('transactions.edit', $bill->uuid) }}" class="btn btn-sm btn-warning text-white shadow-sm"><i class="bi bi-pencil-square"></i></a> --}}
                                     <button type="button" class="btn btn-danger shadow-sm" data-bs-toggle="modal" data-bs-target="#cancelTransaction">
                                         <i class="bi bi-x-circle"></i>
                                     </button>
@@ -100,7 +98,7 @@
                                                 @method('PUT')
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                                 <button type="submit" class="btn btn-danger">Cancel Transaction</button>
                                             </form>
                                             </div>
