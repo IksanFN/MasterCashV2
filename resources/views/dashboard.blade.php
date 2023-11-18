@@ -63,11 +63,11 @@
             <div class="card border-0 shadow-smooth p-2">
                 <div class="card-body">
                     <div class="row align-items-center">
-                        <div class="col-6">
-                            <i class="bi bi-receipt ms-3 fs-2 text-primary"></i>
+                        <div class="col-5">
+                            <i class="bi bi-receipt ms-1 fs-2 text-primary"></i>
                         </div>
-                        <div class="col-6">
-                            <h6>Total Trx</h6>
+                        <div class="col-7">
+                            <h6>Total Transaction</h6>
                             <span>{{ $totalTransaction }}</span>
                         </div>
                     </div>
