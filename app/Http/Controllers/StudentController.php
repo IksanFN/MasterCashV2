@@ -84,9 +84,10 @@ class StudentController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(User $user)
+    public function show($uuid)
     {
-        //
+        $student = User::whereUuid($uuid)->first();
+        return view('students.detail', compact('student'));
     }
 
     /**

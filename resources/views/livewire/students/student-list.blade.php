@@ -55,6 +55,7 @@
                                     @endif
                                 </td>
                                 <td class="text-center">
+                                    <a href="{{ route('students.detail', $student->uuid) }}" class="btn btn-dark shadow-sm">View</a>
                                     <a href="{{ route('students.edit', $student->uuid) }}" class="btn btn-dark"><i class="bi bi-pencil-square"></i></a>
                                     <button type="button" class="btn btn-dark shadow-sm" data-bs-toggle="modal" data-bs-target="#deleteStudent">
                                         <i class="bi bi-trash3-fill"></i>
