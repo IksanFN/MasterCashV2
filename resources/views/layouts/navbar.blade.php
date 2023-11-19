@@ -71,8 +71,8 @@
             <img src="" width="40" height="40" class="ms-2 rounded-circle">
           </a>
           <ul class="dropdown-menu text-small shadow-smooth border-0">
-            <li><a class="dropdown-item" href="#">My Dashboard</a></li>
-            <li><a class="dropdown-item" href="#">Profile</a></li>
+            <li><a class="dropdown-item" href="{{ route('dashboard') }}">My Dashboard</a></li>
+            <li><a class="dropdown-item" href="{{ route('profile.edit') }}">Profile</a></li>
             <li><hr class="dropdown-divider"></li>
             <li>
               <form action="{{ route('logout') }}" method="post">
