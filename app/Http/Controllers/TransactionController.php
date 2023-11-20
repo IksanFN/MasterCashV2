@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Midtrans\Config;
 use App\Models\Transaction;
+use PDF;
 use Carbon\Carbon;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
@@ -62,5 +63,26 @@ class TransactionController extends Controller
     {
         $invoice = Transaction::query()->with(['user', 'year', 'month', 'week', 'paymentAccount'])->where('uuid', $uuid)->first();
         return view('transactions.invoice', compact('invoice'));
+    }
+
+    public function exportPdf($uuid)
+    {
+        $transaction = Transaction::whereUuid($uuid)->first();
+        $data = [
+            'billing' => $transaction->week->title.', '.$transaction->month->title.' '.$transaction->year->title,
+            'student' => $transaction->user->name,
+            'transaction_code' => $transaction->transaction_code,
+            'classroom' => $transaction->user->classroom->title,
+            'payment_status' => $transaction->payment_status,
+            'payment_date' => $transaction->payment_date,
+            'email' => $transaction->user->email,
+            'phone' => $transaction->user->phone,
+            'major' => $transaction->user->major->title,
+            'amount' => $transaction->bill,
+            'payment_method' => $transaction->paymentAccount->account_title
+        ];
+
+        $pdf = PDF::loadView('transactions.invoice-pdf', $data);
+        return $pdf->download($transaction->transaction_code.'.pdf');
     }
 }

@@ -122,6 +122,7 @@ Route::middleware('auth')->group(function () {
             Route::put('/cancel/{transaction:uuid}', 'storeCancel')->name('store_cancel');
             // Route::put('/', 'paymentCash')->name('store');
             Route::get('/invoice/{uuid}', 'invoice')->name('invoice');
+            Route::get('/pdf/{transaction:uuid}', 'exportPdf')->name('pdf');
         });
     });
 
