@@ -15,7 +15,7 @@
                     </select>
                 </div>
                 <div class="col-md-2 ms-auto text-end">
-                    <a href="{{ route('students.create') }}" class="btn btn-dark shadow-sm" ><i class="bi bi-person-plus-fill"></i></a>
+                    <a wire:navigate href="{{ route('students.create') }}" class="btn btn-dark shadow-sm" ><i class="bi bi-person-plus-fill"></i></a>
                     <a href="" wire:click.prevent='export' class="btn btn-success shadow-sm"><i class="bi bi-file-earmark-fill me-1"></i></a>
                 </div>
                 <div class="col-md-2">
@@ -55,8 +55,8 @@
                                     @endif
                                 </td>
                                 <td class="text-center">
-                                    <a href="{{ route('students.detail', $student->uuid) }}" class="btn btn-dark shadow-sm">View</a>
-                                    <a href="{{ route('students.edit', $student->uuid) }}" class="btn btn-dark"><i class="bi bi-pencil-square"></i></a>
+                                    <a wire:navigate href="{{ route('students.detail', $student->uuid) }}" class="btn btn-dark shadow-sm"><i class="bi bi-eye-fill"></i></a>
+                                    <a wire:navigate href="{{ route('students.edit', $student->uuid) }}" class="btn btn-dark"><i class="bi bi-pencil-square"></i></a>
                                     <button type="button" class="btn btn-dark shadow-sm" data-bs-toggle="modal" data-bs-target="#deleteStudent">
                                         <i class="bi bi-trash3-fill"></i>
                                     </button>

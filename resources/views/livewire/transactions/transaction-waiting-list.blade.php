@@ -44,7 +44,6 @@
                         @forelse ($transactions as $transaction)
                             <tr wire:key='{{ $transaction->id }}'>
                                 <td>{{ $loop->iteration }}</td>
-                                {{-- <td>{{ $loop->index + $transactions->firstItem() }}</td> --}}
                                 <td>{{ $transaction->bill_code }}</td>
                                 <td>{{ $transaction->user->name }}</td>
                                 <td>{{ $transaction->user->classroom->title }}</td>

@@ -6,7 +6,7 @@
                 <input type="text" wire:model.live.debounce.500ms='query' placeholder="Search" class="form-control">
             </div>
             <div class="col-md-2 ms-auto text-end">
-                <a href="{{ route('roles.create') }}" class="btn btn-dark shadow-sm" ><i class="bi bi-plus-circle"></i></a>
+                <a wire:navigate href="{{ route('roles.create') }}" class="btn btn-dark shadow-sm" ><i class="bi bi-plus-circle"></i></a>
             </div>
             <div class="col-md-2">
                 <select wire:model.live='limit' class="form-select">
@@ -31,7 +31,7 @@
                             <td>{{$loop->iteration}}</td>
                             <td>{{$role->name}}</td>
                             <td class="text-center">
-                                <a href="{{ route('roles.edit', $role->id) }}" class="btn btn-dark"><i class="bi bi-pencil-square"></i></a>
+                                <a wire:navigate href="{{ route('roles.edit', $role->id) }}" class="btn btn-dark"><i class="bi bi-pencil-square"></i></a>
                                 <button type="button" class="btn btn-dark shadow-sm" data-bs-toggle="modal" data-bs-target="#deleteRole">
                                     <i class="bi bi-trash3-fill"></i>
                                 </button>

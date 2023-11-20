@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg py-3 bg-white sticky-top shadow-smooth">
     <div class="container">
-      <a class="navbar-brand fw-bold" href="{{ route('dashboard') }}">SanCash</a>
+      <a wire:navigate class="navbar-brand fw-bold" href="{{ route('dashboard') }}">SanCash</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -71,8 +71,8 @@
             <img src="" width="40" height="40" class="ms-2 rounded-circle">
           </a>
           <ul class="dropdown-menu text-small shadow-smooth border-0">
-            <li><a class="dropdown-item" href="{{ route('dashboard') }}">My Dashboard</a></li>
-            <li><a class="dropdown-item" href="{{ route('profile.edit') }}">Profile</a></li>
+            <li><a wire:navigate class="dropdown-item" href="{{ route('dashboard') }}">My Dashboard</a></li>
+            <li><a wire:navigate class="dropdown-item" href="{{ route('profile.edit') }}">Profile</a></li>
             <li><hr class="dropdown-divider"></li>
             <li>
               <form action="{{ route('logout') }}" method="post">

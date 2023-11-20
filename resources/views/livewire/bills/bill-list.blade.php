@@ -14,7 +14,7 @@
                     </select>
                 </div>
                 <div class="col-md-2 ms-auto text-end">
-                    <a href="{{ route('bills.create_by_classroom') }}" class="btn btn-dark shadow-sm" ><i class="bi bi-plus-circle"></i></a>
+                    <a wire:navigate href="{{ route('bills.create_by_classroom') }}" class="btn btn-dark shadow-sm" ><i class="bi bi-plus-circle"></i></a>
                     <a href="" wire:click.prevent='export' class="btn btn-dark shadow-sm"><i class="bi bi-file-earmark-fill me-1"></i></a>
                 </div>
                 <div class="col-md-2">

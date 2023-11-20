@@ -54,7 +54,7 @@
                                 </td>
                                 <td>{{ $transaction->payment_date }}</td>
                                 <td class="text-center">
-                                    <a href="{{ route('transactions.invoice', $transaction->uuid) }}" class="btn btn-dark shadow-sm"><i class="bi bi-receipt"></i></a>
+                                    <a wire:navigate href="{{ route('transactions.invoice', $transaction->uuid) }}" class="btn btn-dark shadow-sm"><i class="bi bi-receipt"></i></a>
                                     <button type="button" class="btn btn-danger shadow-sm" data-bs-toggle="modal" data-bs-target="#cancelTransaction">
                                         <i class="bi bi-x-circle"></i>
                                     </button>
