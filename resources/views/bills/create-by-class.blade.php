@@ -66,7 +66,7 @@
                             @enderror
                         </div>
                         <div class="mt-3 text-center">
-                            <button type="submit" class="btn btn-darkche shadow-sm px-4">Create</button>
+                            <button type="submit" class="btn btn-dark shadow-sm px-4">Create</button>
                         </div>
                     </form>
                 </div>

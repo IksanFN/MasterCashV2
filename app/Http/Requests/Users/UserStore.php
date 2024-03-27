@@ -7,23 +7,15 @@ use Illuminate\Support\Facades\Auth;
 
 class UserStore extends FormRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     */
     public function authorize(): bool
     {
         return Auth::check();
     }
 
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
-     */
     public function rules(): array
     {
         return [
-            'avatar' => ['nullable', 'image', 'mimes:png,jpg,jpeg'],
+            'avatar' => ['nullable', 'image', 'mimes:png,jpg,jpeg', 'mimetypes:image/jpeg,image/png'],
             'name' => ['required', 'string'],
             'email' => ['required', 'email', 'unique:users'],
             'password' => ['required', 'min:6'],

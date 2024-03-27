@@ -23,7 +23,7 @@ class StudentStore extends FormRequest
     public function rules(): array
     {
         return [
-            'avatar' => ['nullable', 'image', 'mimes:png,jpg,jpeg'],
+            'avatar' => ['nullable', 'image', 'mimes:png,jpg,jpeg', 'mimetypes:image/jpeg,image/png'],
             'classroom' => ['required', 'not_in:default'],
             'major' => ['required', 'not_in:default'],
             'nisn' => ['required', 'numeric', 'unique:users'],

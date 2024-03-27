@@ -35,7 +35,7 @@ class UserController extends Controller
      */
     public function store(UserStore $request)
     {
-        // return $request->all();
+        return $request->all();
         if ($request->hasFile('avatar')) {
 
             // Get Name File and Move Image
@@ -50,6 +50,7 @@ class UserController extends Controller
                 'password' => Hash::make($request->password),
                 'phone' => $request->phone,
                 'is_student' => 0,
+                'for_classroom' => $request->classroom,
             ]);
             $user->assignRole($request->roles);
         } else {
@@ -59,6 +60,7 @@ class UserController extends Controller
                 'password' => Hash::make($request->password),
                 'phone' => $request->phone,
                 'is_student' => 0,
+                'for_classroom' => $request->classroom,
             ]);
             $user->assignRole($request->roles);
         }

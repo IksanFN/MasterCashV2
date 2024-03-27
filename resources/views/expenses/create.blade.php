@@ -45,6 +45,18 @@
                                 <span class="form-text text-danger">{{ $message }}</span>
                             @enderror
                         </div>
+                        <div class="mb-3">
+                            <label class="form-label">For Classroom</label>
+                            <select name="for_classroom" class="form-select">
+                                <option value="default" hidden>Choose Classroom</option>
+                                @foreach ($classrooms as $classroom)
+                                    <option value="{{ $classroom->id }}">{{ $classroom->title }}</option>
+                                @endforeach
+                            </select>
+                            @error('for_classroom')
+                                <span class="text-danger form-text">{{ $message }}</span>
+                            @enderror
+                        </div>
                         <div class="mt-3 text-center">
                             <button type="submit" class="btn btn-dark px-4">Create</button>
                         </div>

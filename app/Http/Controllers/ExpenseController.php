@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Classroom;
 use App\Models\Expense;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -18,11 +19,13 @@ class ExpenseController extends Controller
 
     public function create()
     {
-        return view('expenses.create');
+        $classrooms = Classroom::all();
+        return view('expenses.create', compact('classrooms'));
     }
 
     public function detail(Expense $expense)
     {
+        
         return view('expenses.detail', compact('expense'));
     }
 
@@ -33,7 +36,8 @@ class ExpenseController extends Controller
             'title' => ['required', 'string', 'min:3'],
             'description' => ['nullable', 'string'],
             'amount' => ['required', 'numeric'],
-            'expense_date' => ['required', 'date']
+            'expense_date' => ['required', 'date'],
+            'for_classroom' => ['required', 'not_in:default'],
         ]);
 
         if ($request->hasFile('image')) {
